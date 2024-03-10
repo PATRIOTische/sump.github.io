@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - Прó нäč</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <style>
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .overlay {
+            position: fixed!important;
+            top: 0!important;
+            left: 0!important;
+            width: 100%!important;
+            height: 100%!important;
+            background-color: #1d1b1e!important;
+            display: flex;
+            justify-content: center!important;
+            align-items: center!important;
+            z-index: 9999!important;
+            opacity: 1!important;
+            animation: fadeOut 2s linear forwards!important;
+        }
+
+        .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            border: 9px solid #7e292a;
+            animation: spinner-bulqg1 0.8s infinite linear alternate,
+            spinner-oaa3wk 1.6s infinite linear;
+        }
+
+        .overlay:before {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -0.25em;  
+        }
+
+        .spinner:before {
+            display: block;
+            height: 100%;
+            margin-top: -0.5em;  
+        }
+  
+        @keyframes spinner-bulqg1 {
+            0% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+            }
+ 
+            12.5% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+            }
+ 
+            25% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+            }
+ 
+            50% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            62.5% {
+                clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            75% {
+                clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            100% {
+                clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+            }
+        }
+ 
+        @keyframes spinner-oaa3wk {
+            0% {
+                transform: scaleY(1) rotate(0deg);
+            }
+ 
+            49.99% {
+                transform: scaleY(1) rotate(135deg);
+            }
+ 
+            50% {
+                transform: scaleY(-1) rotate(0deg);
+            }
+ 
+            100% {
+                transform: scaleY(-1) rotate(-135deg);
+            }
+        }
+
+        body {
+            background-image: url(assets/background.png);
+            margin: 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            transition: background-image 4s, color 4s;
+            background-position: 100% 100%;
+        }
+
+        label {
+            display: block;
+            height: 2em;
+            width: 3.75em;
+            font-size: 2rem;
+            border: .125em solid currentColor;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            position: relative;
+            position: fixed; 
+            top: 10px;  
+            right: 10px;
+            border-radius: 1em;
+        }
+
+        label::before,
+        label::after {
+            content: '';
+            display: block;
+            border-radius: 1em;
+            position: absolute;
+            z-index: 1;
+        }
+
+        label::after {
+            width: 1.125em;
+            height: 1.125em;
+            box-shadow: .25em .25em #5901d8;
+            right: .9em;
+            top: .125em;
+        }
+
+        label::before {
+            width: .625em;
+            height: .625em;
+            background-color: #ffc409;
+            outline: .25em dotted #ffc409;
+            outline-offset: .125em;
+            left: .7em;
+            top: .7em;
+        }
+
+        span {
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            background-color: currentColor;
+            border-radius: 2em;
+            top: .25em;
+            left: .25em;
+            overflow: hidden;
+            position: relative;
+            text-indent: -9999px;
+            transition: left .25s;
+            z-index: 2;
+        }
+
+        input:checked~ label span {
+            left: 2em;
+        }
+
+        body:has(input:checked) {
+            background-position: 100% 100%;
+            color: #d0d0d0;
+        }
+        .custom-checkbox {
+            visibility: hidden;
+        }
+
+        .nav-social-button {
+            font: 1.2em sans-serif;
+            position: fixed;
+            bottom: 85px;   
+            right: 20px;  
+            margin-bottom: 10px;  
+        }
+
+        ul {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            list-style-type: none;
+            transform: skewY(-15deg);
+        }
+
+        li {
+            display: block;
+            position: relative;
+            background: #322F2E;
+            transition: 0.5s;
+        }
+
+        li:after {
+            content: "";
+            position: absolute;
+            top: -2em;
+            right: 1.01em;
+            width: 100%;
+            height: 2em;
+            background: inherit;
+            filter: brightness(0.8);
+            transform: skewX(45deg);
+        }
+
+        li:before {
+            font-family: "FontAwesome";
+            font-weight: 600;
+            color: #d5ead7;
+            content: attr(data-icon);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: -1em;
+            left: -2em;
+            width: 2em;
+            height: 100%;
+            background: inherit;
+            filter: brightness(0.6);
+            transform: skewY(45deg);
+        }
+
+        li:nth-child(1) {
+            z-index: 4;
+        }
+
+        li:nth-child(2) {
+            z-index: 3;
+        }
+
+        li:nth-child(3) {
+            z-index: 2;
+        }
+
+        li:nth-child(4) {
+            z-index: 1;
+        }
+
+        li:last-child:after {
+            box-shadow: -5em 5em 2em #322F2E;
+        }
+
+        a {
+            display: block;
+            padding: 0.5em;
+            color: #d5ead7;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        li:hover {
+            background: var(--clr);
+            transform: translateX(-20%);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.45); 
+            color: white; 
+            padding: 10px; 
+            font-family: Arial, sans-serif;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .nav-button {
+            background-color: rgba(255, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px 0; 
+            cursor: pointer;
+            filter: grayscale(0);
+            transition: background-color 0.3s, color 0.3s, filter 0.3s;
+            border: 1px solid transparent;
+            border-radius: 8px; 
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 0, 0, 1);
+            filter: grayscale(0);
+            border-color: rgb(255, 255, 255);
+        }
+
+        .clock {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Deutsch Gothic', sans-serif;
+            gap: 10px;
+            transition: color 4s;
+            transform: translate(0%, 50%);
+        }
+
+        section {
+            width: 120px;
+            height: 120px;
+            display: flex;
+        }
+
+        .tens, .ones {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+        }
+
+        .tens p, .ones p {
+            position: absolute;
+            font-size: 6rem;
+            z-index: 1;
+        }
+
+        .separator {
+            font-size: 4rem;
+        }
+
+        .clock {
+            color: #32323259;
+        }
+
+        .separator,
+        p.active {
+            color: #FFE548;
+            text-shadow: 0px 0px 20px #F58732;
+            z-index: 2;
+        }
+
+        .tens p.active,
+        .ones p.active {
+            z-index: 2;
+        }
+
+        #faqBlock {
+            width: 60%;
+            max-width: 600px;
+            background-color: #332828;
+            border-radius: 15px;
+            overflow: hidden;
+            transform: translate(110%, 10%);
+        }
+
+        #faqHeader {
+            background-color: #332828;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #faqContent {
+            padding: 30px;
+            background-color: #2B2222;
+        }
+
+        #faqText {
+            color: #d5ead7;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .faq-title {
+            color: #FFFFFF; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>- Çпільнота укрãїніʓації ɱайнкрафт Плăгінів -</h1>
+        <h2>- Прó нäč -</h2>
+        <a href="MAIN-СУМП.html" class="nav-button">⨭ Пꙩвéрнутиčя</a>
+    </header>
+
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="nav-social-button">
+        <ul>
+            <li style="--clr: #ff0050;" data-icon="&#xe07b"><a href="#">TikTok</a></li>
+            <li style="--clr: #4267b2;" data-icon="&#xf39e"><a href="#">Facebook</a></li>
+            <li style="--clr: #1da1f2;" data-icon="&#xe61b"><a href="#">Twitter</a></li>
+            <li style="--clr: #c13584;" data-icon="&#xf16d"><a href="#">Instagram</a></li>
+        </ul>
+    </div>
+
+    <div id="faqBlock">
+        <div id="faqHeader">
+            <h2 class="faq-title">FAQ</h2>
+        </div>
+        <div id="faqContent">
+            <p id="faqText">Вітаємо на нашому сайті, присвяченому плагінам для Minecraft з українізацією або створеним в Україні.
+                Тут ви знайдете різноманітні плагіни, які додають нові можливості та функції до вашої улюбленої гри.
+                Наша команда працює над розширенням світу Minecraft та надання вам заміщення російсь#их та англійських 
+                плагінів.</p>
+            <p id="faqText"></p>
+            <p id="faqText">Запрошуємо вас на захоплюючий ігровий досвід з плагінами, наданими нашим товариством!</p>
+        </div>
+    </div>
+
+    <div class="clock">
+        <section class="hour">
+            <div class="tens">
+                <p class="active">0</p>
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <p>5</p>
+                <p>6</p>
+                <p>7</p>
+                <p>8</p>
+                <p>9</p>
+            </div>
+            <div class="ones">
+                <p>0</p>
+                <p class="active">1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <p>5</p>
+                <p>6</p>
+                <p>7</p>
+                <p>8</p>
+                <p>9</p>
+            </div>
+        </section>
+        <p class="separator">:</p>
+        <section class="min">
+            <div class="tens">
+                <p>0</p>
+                <p>1</p>
+                <p class="active">2</p>
+                <p>3</p>
+                <p>4</p>
+                <p>5</p>
+                <p>6</p>
+                <p>7</p>
+                <p>8</p>
+                <p>9</p>
+            </div>
+            <div class="ones">
+                <p>0</p>
+                <p>1</p>
+                <p>2</p>
+                <p class="active">3</p>
+                <p>4</p>
+                <p>5</p>
+                <p>6</p>
+                <p>7</p>
+                <p>8</p>
+                <p>9</p>
+            </div>
+        </section>
+        <p class="separator">:</p>
+        <section class="sec">
+            <div class="tens">
+                <p>0</p>
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p class="active">4</p>
+                <p>5</p>
+                <p>6</p>
+                <p>7</p>
+                <p>8</p>
+                <p>9</p>
+            </div>
+            <div class="ones">
+                <p>0</p>
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <p class="active">5</p>
+                <p>6</p>
+                <p>7</p>
+                <p>8</p>
+                <p>9</p>
+            </div>
+        </section>
+    </div>
+    
+    <input type="checkbox" id="toggle" class="custom-checkbox" checked>
+    <label for="toggle">
+        <span>dark-mode</span>
+    </label>
+
+    <div class="footer">
+        <p>- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</p>
+        <p>- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</p>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('toggle');
+
+    toggle.addEventListener('change', function () {
+        if (toggle.checked) {
+            document.body.style.backgroundImage = 'url("assets/background.png")';
+            document.body.style.color = '#d0d0d0';
+            document.querySelector('h1').style.color = '#FFFFFF';
+            document.querySelector('.clock').style.color = '#32323259';
+            document.querySelector('.no-results').style.color = 'rgba(255, 255, 255, 0.77)';
+            document.querySelector('#faqHeader').style.background = '#332828';
+            document.querySelector('#faqContent').style.background = '#2B2222';
+        } else {
+            document.body.style.backgroundImage = 'url("assets/background2.png")';
+            document.body.style.color = '#1D1B1E';
+            document.querySelector('h1').style.color = 'rgba(0, 0, 0, 0.77)';
+            document.querySelector('.clock').style.color = 'rgba(255, 245, 238, 0.1)';
+            document.querySelector('.no-results').style.color = 'rgba(0, 0, 0, 0.77)'; 
+            document.querySelector('#faqHeader').style.background = '#CCD7D7';
+            document.querySelector('#faqContent').style.background = '#D4DDDD'; 
+        }
+    });
+});
+
+    function showLoadingOverlay() {
+        var overlay = document.getElementById("overlay");
+        overlay.style.display = "flex"; 
+    }
+
+ 
+    function hideLoadingOverlay() {
+        var overlay = document.getElementById("overlay");
+        overlay.style.display = "none"; 
+    }
+
+    function openModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    showLoadingOverlay();
+
+    setTimeout(function() {
+        hideLoadingOverlay();
+    }, 90);
+
+    const $ = (selector) => {
+        return document.querySelector(selector);
+    };
+    const $hour = $('.hour')
+    const $min = $('.min')
+    const $sec = $('.sec')
+
+    const getTime = () => {
+    const now = new Date();
+
+    return {
+        hour: String(now.getHours()).padStart(2, '0'),
+        min: String(now.getMinutes()).padStart(2, '0'),
+        sec: String(now.getSeconds()).padStart(2, '0'),
+    };
+}
+
+const deactivateDigits = ($digits) => {
+    $digits.forEach($number => $number.classList.remove('active'));
+};
+
+const setDigits = (section, digit) => {
+    const $tens = [...section.children[0].children];
+    const $ones = [...section.children[1].children];
+
+    // Деактивація всіх цифр
+    deactivateDigits($tens);
+    deactivateDigits($ones);
+
+    // Активація потрібної цифри
+    $tens[digit[0]].classList.add('active');
+    $ones[digit[1]].classList.add('active');
+};
+
+    const update = () => {
+        const time = getTime()
+        setDigits($hour, time.hour);
+        setDigits($min, time.min);
+        setDigits($sec, time.sec);
+    };
+
+    update();
+    setInterval(update, 1000)
+</script>

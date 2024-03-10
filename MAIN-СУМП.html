@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - Головна</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <style>
+        #searchInput {
+            padding: 8px;
+            margin: 0 5px;
+            background-color: #201A1A; 
+            color: white; 
+            border: 1px solid white; 
+        }
+        #answerInput {
+            padding: 8px;
+            margin: 0 5px;
+            background-color: #201A1A; 
+            color: white; 
+            border: 1px solid white; 
+        } 
+        .overlay {
+            position: fixed!important;
+            top: 0!important;
+            left: 0!important;
+            width: 100%!important;
+            height: 100%!important;
+            background-color: #1d1b1e!important;
+            display: flex;
+            justify-content: center!important;
+            align-items: center!important;
+            z-index: 9999!important;
+            opacity: 1!important;
+            animation: fadeOut 2s linear forwards!important;
+        }
+
+        .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            border: 9px solid #7e292a;
+            animation: spinner-bulqg1 0.8s infinite linear alternate,
+            spinner-oaa3wk 1.6s infinite linear;
+        }
+
+        .overlay:before {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -0.25em;
+        }
+
+        .spinner:before {
+            display: block;
+            height: 100%;
+            margin-top: -0.5em;
+        }
+  
+        @keyframes spinner-bulqg1 {
+            0% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+            }
+ 
+            12.5% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+            }
+ 
+            25% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+            }
+ 
+            50% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            62.5% {
+                clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            75% {
+                clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            100% {
+                clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+            }
+        }
+ 
+        @keyframes spinner-oaa3wk {
+            0% {
+                transform: scaleY(1) rotate(0deg);
+            }
+ 
+            49.99% {
+                transform: scaleY(1) rotate(135deg);
+            }
+ 
+            50% {
+                transform: scaleY(-1) rotate(0deg);
+            }
+ 
+            100% {
+                transform: scaleY(-1) rotate(-135deg);
+            }
+        }
+        #addTranslationButton {
+            background-color: rgba(46, 139, 87, 0.8); 
+            color: white; 
+            font-size: 18px; 
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px; 
+        }
+        #addTranslationButton:hover {
+            background-color: rgba(46, 139, 87, 1); 
+        }
+        #searchButton {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            font-size: 16px; 
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px; 
+        }
+        #searchButton:hover {
+            background-color: rgba(255, 0, 0, 1); 
+        }
+        body {
+            background-image: url(assets/background.png);
+            margin: 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            transition: background-image 4s, color 4s;
+            background-position: 100% 100%;
+        }
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        .translations {
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+        }
+        .translations img {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .plugins {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .plugin {
+            background-color:#202020;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            position: relative;
+            text-align: center;
+            width: 30%;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+            min-width: 200px;
+            max-width: 300px;
+            border: 3px solid #4E6D4A; 
+        }
+
+        .plugin img {
+            width: 60%; 
+            height: auto;
+            border-radius: 15px 15px 0 0;
+            margin-top: 10px;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #ffb3b0 #534342;
+        }
+  
+        *::-webkit-scrollbar {
+            height: 10px;
+            width: 8px;
+        }
+        *::-webkit-scrollbar-track, *::-webkit-scrollbar-track:hover, *::-webkit-scrollbar-track:active {
+            background-color: #534342;
+        }
+  
+        *::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #ffb3b0;
+        }
+  
+        *::-webkit-scrollbar-thumb:hover {
+            background-color: #ffb3b0;
+        }
+  
+        *::-webkit-scrollbar-thumb:active {
+            background-color: #ffb3b0;
+        }
+  
+
+        @media (max-width: 768px) {
+
+            * {
+                scrollbar-width: thin;
+                scrollbar-color: #ffb3b0 #534342;
+            }
+
+            *::-webkit-scrollbar {
+                height: 0px;
+                width: 0px;
+            }
+
+            *::-webkit-scrollbar-thumb {
+                border-radius: 0px;
+                background-color: #ffb3b0;
+            }
+        }
+
+        .plugin .name {
+            font-weight: bold;
+            font-size: 1.8em; 
+            margin-top: 10px; 
+        }
+
+        .plugin .description {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .plugin .author {
+            color: #2B2222;
+            margin-top: 20px;
+        }
+
+        .plugin .download-button {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .plugin .download-button:hover {
+            background-color: darkred;
+        }
+
+        .plugin p {
+            color: white;
+        }
+
+
+        @media (max-width: 767px) {
+            .plugin {
+                width: calc(100% - 40px);
+            }
+
+            .plugin img {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.45); 
+            color: white; 
+            padding: 10px; 
+            font-family: Arial, sans-serif;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            border-radius: 10px; 
+        }
+    
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px; 
+            color: #000000;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .modal-content .response-buttons {
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .modal-content .response-buttons label {
+            width: 49%;
+            display: inline-block;
+        }
+
+        .nav-button {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            filter: grayscale(0); 
+            transition: background-color 0.3s, color 0.3s, filter 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-button:hover {   
+            background-color: rgba(255, 0, 0, 1); 
+            filter: grayscale(0);  
+            border-color: rgb(255, 255, 255);
+        }
+        .nav-button.dimmed {         
+            filter: grayscale(1);  
+        }
+ 
+        .no-results {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.77);
+            font-weight: bold;
+        }
+        .translations-count {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            font-size: 14px; 
+            padding: 8px 16px;
+            margin-top: 20px;
+            border-radius: 5px; 
+            display: inline-block; 
+        }
+
+        button {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            font-size: 16px;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px; 
+        }
+
+        button:hover {
+            background-color: rgba(255, 0, 0, 1);
+        }
+
+        #aboutUsModal .modal-content {
+            background-color: #201A1A; 
+            color: white; 
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #aboutUsModal header {
+            background-color: #7e292a; 
+            color: white; 
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        #AuthorizationMenu .modal-content {
+            background-color: #201A1A; 
+            color: white; 
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #AuthorizationMenu header {
+            background-color: #7e292a; 
+            color: white; 
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 10px;
+        }     
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            width: 100%;
+            height: 50vh; 
+            flex-direction: column;
+        }
+        
+        .gallery-header {
+            font-size: 18px;  
+            margin-bottom: 10px;  
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: row;
+            width: 60%;
+            height: 300px;
+            position: relative; 
+        }
+
+        .item {
+            flex: 1;
+            height: 100%;
+        }
+        .item {
+            background-position: center;
+            background-size: cover;
+            transition: flex 0.8s ease;
+        }
+        .item:hover {
+            flex: 3;
+        }
+
+        .dark-mode-label {
+            display: block;
+            height: 2em;
+            width: 3.75em;
+            font-size: 2rem;
+            border: .125em solid currentColor;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            position: relative;
+            position: fixed; 
+            top: 10px;  
+            right: 10px;
+            border-radius: 1em;
+        }
+
+        .dark-mode-label::before,
+        .dark-mode-label::after {
+            content: '';
+            display: block;
+            border-radius: 1em;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .dark-mode-label::after {
+            width: 1.125em;
+            height: 1.125em;
+            box-shadow: .25em .25em #5901d8;
+            right: .9em;
+            top: .125em;
+        }
+
+        .dark-mode-label::before {
+            width: .625em;
+            height: .625em;
+            background-color: #ffc409;
+            outline: .25em dotted #ffc409;
+            outline-offset: .125em;
+            left: .7em;
+            top: .7em;
+        }
+
+        .dark-mode-span {
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            background-color: currentColor;
+            border-radius: 2em;
+            top: .25em;
+            left: .25em;
+            overflow: hidden;
+            position: relative;
+            text-indent: -9999px;
+            transition: left .25s;
+            z-index: 2;
+        }
+
+        input:checked~ label span {
+            left: 2em;
+        }
+
+        body:has(input:checked) {
+            background-position: 100% 100%;
+            color: #d0d0d0;
+        }
+        .custom-checkbox {
+            visibility: hidden;
+        }
+
+        .nav-social-button {
+            font: 1.2em sans-serif;
+            position: fixed;
+            bottom: 85px;   
+            right: 20px;  
+            margin-bottom: 10px;  
+        }
+
+        ul {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            list-style-type: none;
+            transform: skewY(-15deg);
+        }
+
+        li {
+            display: block;
+            position: relative;
+            background: #322F2E;
+            transition: 0.5s;
+        }
+
+        li:after {
+            content: "";
+            position: absolute;
+            top: -2em;
+            right: 1.01em;
+            width: 100%;
+            height: 2em;
+            background: inherit;
+            filter: brightness(0.8);
+            transform: skewX(45deg);
+        }
+
+        li:before {
+            font-family: "FontAwesome";
+            font-weight: 600;
+            color: #d5ead7;
+            content: attr(data-icon);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: -1em;
+            left: -2em;
+            width: 2em;
+            height: 100%;
+            background: inherit;
+            filter: brightness(0.6);
+            transform: skewY(45deg);
+        }
+
+        li:nth-child(1) {
+            z-index: 4;
+        }
+
+        li:nth-child(2) {
+            z-index: 3;
+        }
+
+        li:nth-child(3) {
+            z-index: 2;
+        }
+
+        li:nth-child(4) {
+            z-index: 1;
+        }
+
+        li:last-child:after {
+            box-shadow: -5em 5em 2em #322F2E;
+        }
+
+        a {
+            display: block;
+            padding: 0.5em;
+            color: #d5ead7;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        li:hover {
+            background: var(--clr);
+            transform: translateX(-20%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>- Çпільнота укрãїніʓації ɱайнкрафт Плăгінів -</h1>
+        <button id="addTranslationButton" onclick="openModal()">+</button>
+        <input type="text" id="searchInput" placeholder="Bвéдіть ʓăпит для пōшукɣ">
+        <button id="searchButton" onclick="searchPlugins()">🔍</button>
+    </header>
+
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal')">&times;</span>
+        <h2>Додавання перекладу</h2>
+        
+        <label for="pluginName">Наʒвâ плагіну</label>
+        <input type="text" id="pluginName" placeholder="Введіть назву плагіну">
+
+        <label for="pluginDescription">Опис плâгіну</label>
+        <textarea id="pluginDescription" placeholder="Введіть опис плагіну"></textarea>
+
+        <label for="pluginLogoLink">Поćилання на logo плâгінɥ</label>
+        <input type="text" id="pluginLogoLink" placeholder="Введіть посилання на logo плагіну">
+
+        <label for="yourNickname">Ваɯ ніķ(и)</label>
+        <input type="text" id="yourNickname" placeholder="Введіть ваш нік">
+
+        <label for="pluginFileLink">Поçилання на фâйл плагінɥ (.jar)</label>
+        <input type="text" id="pluginFileLink" placeholder="Введіть посилання на файл плагіну">
+
+        <label for="contactInfo">Е-ɱейл\Телəграм</label>
+        <input type="text" id="contactInfo" placeholder="Введіть ваш контактний е-мейл або Telegram">
+
+        <label for="responsibility" class="responsibility-label">*при завантаженні плагіну на сайт ви берете на себе відповідальність за його вміст</label>
+
+        <button>Опублікувати</button>
+    </div>
+</div>
+
+    <nav>
+        <button class="nav-button" onclick="resetSettingsAndShowAll()" onmouseover="hoverButton(this)" onmouseout="resetButtons()">Всі пèреклąди</button>
+        <a class="nav-button" href="PLUGINS-СУМП.html" onmouseover="hoverButton(this)" onmouseout="resetButtons()">Влāćні плåгіни</a>
+        <button class="nav-button" onmouseover="hoverButton(this)" onmouseout="resetButtons()">В рŏʒробці</button>
+        <button class="nav-button" onclick="showOfficialPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()">Őфіційні</button>
+        <button class="nav-button" onclick="showContributorPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()">Від ɣчаçниĸіʙ</button>
+        <a class="nav-button" href="FAQ-СУМП.html" onclick="aboutUsModal()" onmouseover="hoverButton(this)" onmouseout="resetButtons()">Прó нäč</a>
+    </nav>
+
+    <div class="plugins" id="pluginsContainer">
+        <div class="no-results" id="noResultsMessage" style="display: none;">Нічогò не ʒнãйдено</div>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-header" style="color:rgb(255, 255, 255); font-size: 24px;" >- Гąлерèя -</div>
+        <div class="gallery">
+            <div class="gallery-border"></div>
+            <div class="item" style="background-image: url(https://i.pinimg.com/originals/a3/ba/14/a3ba14a1515b15d71895087e738a67a5.jpg);"></div>
+            <div class="item" style="background-image: url(https://fonoteka.top/uploads/posts/2021-04/1618465753_3-p-vesna-anime-fon-3.jpg);"></div>
+            <div class="item" style="background-image: url(https://i.pinimg.com/736x/2b/1b/04/2b1b043836b1ae94a113ca4045a1e84b.jpg);"></div>
+            <div class="item" style="background-image: url(https://kartinki.pics/pics/uploads/posts/2022-08/1660298914_1-kartinkin-net-p-anime-fon-vesna-krasivo-1.jpg);"></div>
+            <div class="item" style="background-image: url(https://img.freepik.com/premium-photo/winter-background-in-anime-style_398492-12201.jpg);"></div>
+        </div>
+    </div>
+
+
+    <div class="nav-social-button">
+        <ul>
+            <li style="--clr: #ff0050;" data-icon="&#xe07b"><a href="#">TikTok</a></li>
+            <li style="--clr: #4267b2;" data-icon="&#xf39e"><a href="#">Facebook</a></li>
+            <li style="--clr: #1da1f2;" data-icon="&#xe61b"><a href="#">Twitter</a></li>
+            <li style="--clr: #c13584;" data-icon="&#xf16d"><a href="#">Instagram</a></li>
+        </ul>
+    </div>
+    
+    <input type="checkbox" id="toggle" class="custom-checkbox" checked>
+    <label for="toggle" class="dark-mode-label">
+        <span class="dark-mode-span">dark-mode</span>
+    </label>
+
+    <div class="footer">
+        <p>- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</p>
+        <p>- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</p>
+    </div>
+</body>
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('toggle');
+
+                toggle.addEventListener('change', function () {
+                    if (toggle.checked) {
+                        document.body.style.backgroundImage = 'url("assets/background.png")';
+                        document.body.style.color = '#d0d0d0';
+                        document.querySelector('h1').style.color = '#FFFFFF';
+                        document.querySelector('.gallery-header').style.color = '#FFFFFF';
+                        document.querySelector('.no-results').style.color = 'rgba(255, 255, 255, 0.77)';
+                    } else {
+                        document.body.style.backgroundImage = 'url("assets/background2.png")';
+                        document.body.style.color = '#1D1B1E';
+                        document.querySelector('h1').style.color = 'rgba(0, 0, 0, 0.77)';
+                        document.querySelector('.gallery-header').style.color = 'rgba(0, 0, 0, 0.77)';
+                        document.querySelector('.no-results').style.color = 'rgba(0, 0, 0, 0.77)';
+                    }
+                });
+            });
+
+            function hoverButton(button) {
+                var buttons = document.getElementsByClassName('nav-button');
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i] !== button) {
+                        buttons[i].classList.add('dimmed');
+                    }
+                }            
+            }
+
+            function resetButtons() {
+                var buttons = document.getElementsByClassName('nav-button');
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.remove('dimmed');
+                }
+            }
+
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "none";
+            }
+
+            function searchPlugins() {
+   
+                var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+
+                var pluginsContainer = document.getElementById("pluginsContainer");
+                var plugins = pluginsContainer.getElementsByClassName("plugin");
+
+                var noResultsMessage = document.getElementById("noResultsMessage");
+                noResultsMessage.style.display = "none"; 
+
+                var foundResults = false;
+
+                for (var i = 0; i < plugins.length; i++) {
+                    var pluginName = plugins[i].getElementsByClassName("plugin-name")[0].innerText.toLowerCase();
+                    var pluginDescription = plugins[i].getElementsByClassName("plugin-description")[0].innerText.toLowerCase();
+
+                    if (pluginName.includes(searchTerm) || pluginDescription.includes(searchTerm)) {
+                        plugins[i].style.display = "block"; 
+                        foundResults = true; 
+                    } else {
+                        plugins[i].style.display = "none"; 
+                    }
+                }
+
+                if (!foundResults) {
+                    noResultsMessage.style.display = "block";
+                }
+            }
+
+            document.getElementById("searchButton").addEventListener("click", searchPlugins);
+
+            function showLoadingOverlay() {
+                var overlay = document.getElementById("overlay");
+                overlay.style.display = "flex"; 
+            }
+
+            function hideLoadingOverlay() {
+                var overlay = document.getElementById("overlay");
+                overlay.style.display = "none"; 
+            }
+
+            var modal = document.getElementById("myModal");
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Escape" || event.key === "Esc") {
+                closeModal('myModal');
+                }
+            });
+
+            function openModal() {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+            }
+
+            showLoadingOverlay();
+
+            setTimeout(function() {
+                hideLoadingOverlay();
+            }, 90);  
+
+            function publishTranslation() {
+    var pluginName = document.getElementById("pluginName").value;
+    var pluginDescription = document.getElementById("pluginDescription").value;
+    var pluginLogoLink = document.getElementById("pluginLogoLink").value;
+    var yourNickname = document.getElementById("yourNickname").value;
+    var pluginFileLink = document.getElementById("pluginFileLink").value;
+    var contactInfo = document.getElementById("contactInfo").value;
+
+    var message = `**Новий переклад:**
+    Назва плагіну: ${pluginName}
+    Опис плагіну: ${pluginDescription}
+    Посилання на logo плагіну: ${pluginLogoLink}
+    Ваш нік: ${yourNickname}
+    Посилання на файл плагіну: ${pluginFileLink}
+    Контактна інформація: ${contactInfo}`;
+
+    var webhookUrl = "https://discord.com/api/webhooks/1216347943339032606/MUtMyI7hiBAMw3bKh8k3-OTSzb8cw20_G6t7BvAAvLLrGzYd28rdOZGgyg7d5VKRRSxt";
+
+    fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content: message }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error("Error:", error));
+}
+    </script>
+</body>
+</html>
