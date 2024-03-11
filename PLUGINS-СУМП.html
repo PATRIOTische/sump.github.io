@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - Влāćні плåгіни</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <style>
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .overlay {
+            position: fixed!important;
+            top: 0!important;
+            left: 0!important;
+            width: 100%!important;
+            height: 100%!important;
+            background-color: #1d1b1e!important;
+            display: flex;
+            justify-content: center!important;
+            align-items: center!important;
+            z-index: 9999!important;
+            opacity: 1!important;
+            animation: fadeOut 2s linear forwards!important;
+        }
+
+        .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            border: 9px solid #7e292a;
+            animation: spinner-bulqg1 0.8s infinite linear alternate,
+            spinner-oaa3wk 1.6s infinite linear;
+        }
+
+        .overlay:before {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -0.25em;  
+        }
+
+        .spinner:before {
+            display: block;
+            height: 100%;
+            margin-top: -0.5em;  
+        }
+  
+        @keyframes spinner-bulqg1 {
+            0% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+            }
+ 
+            12.5% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+            }
+ 
+            25% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+            }
+ 
+            50% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            62.5% {
+                clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            75% {
+                clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            100% {
+                clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+            }
+        }
+ 
+        @keyframes spinner-oaa3wk {
+            0% {
+                transform: scaleY(1) rotate(0deg);
+            }
+ 
+            49.99% {
+                transform: scaleY(1) rotate(135deg);
+            }
+ 
+            50% {
+                transform: scaleY(-1) rotate(0deg);
+            }
+ 
+            100% {
+                transform: scaleY(-1) rotate(-135deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 800px;
+            height: 480px;
+            background: #f5f5f5;
+            box-shadow: 0 30px 50px #dbdbdb;
+            position: relative; 
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-56%, -50%);
+        }
+
+        .container .slide .item {
+            width: 165px;
+            height: 250px;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            border-radius: 20px;
+            box-shadow: 0 30px 50px #505050;
+            background-position: 50% 50%;
+            background-size: cover;
+            display: inline-block;
+            transition: 0.5s;
+        }
+
+        .slide .item:nth-child(1),
+        .slide .item:nth-child(2) {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide .item:nth-child(3) {
+            left: 50%;
+        }
+
+        .slide .item:nth-child(4) {
+            left: calc(50% + 210px);
+        }
+
+        .slide .item:nth-child(5) {
+            left: calc(50% + 430px);
+        }
+
+        .slide .item:nth-child(n + 6) {
+            left: calc(50% + 650px);
+        }
+
+        .item .content {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            width: 300px;
+            text-align: left;
+            color: #eee;
+            transform: translate(0, -50%);
+            font-family: system-ui;
+            display: none;
+        }
+
+        .slide .item:nth-child(2) .content {
+            display: block;
+        }
+
+        .content .name {
+            font-size: 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+            opacity: 0;
+            animation: animate 1s ease-in-out 1 forwards;
+        }
+
+        .content .des {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: animate 1s ease-in-out 0.3s 1 forwards;
+        }
+        .content button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            animation: animate 1s ease-in-out 0.6s 1 forwards;
+        }
+
+        @keyframes animate {
+            from {
+                opacity: 0;
+                transform: translate(0, 100px);
+                filter: blur(33px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0);
+                filter: blur(0);
+            }
+        }
+
+        .button {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .button button {
+            width: 40px;
+            height: 35px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+            border: 1px solid #000;
+            transition: 0.3s;
+        }
+
+        .button button:hover {
+            background: #ababab;
+            color: #fff
+        }
+
+        label {
+            display: block;
+            height: 2em;
+            width: 3.75em;
+            font-size: 2rem;
+            border: .125em solid currentColor;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            position: relative;
+            position: fixed; 
+            top: 10px;  
+            right: 10px;
+            border-radius: 1em;
+        }
+
+        label::before,
+        label::after {
+            content: '';
+            display: block;
+            border-radius: 1em;
+            position: absolute;
+            z-index: 1;
+        }
+
+        label::after {
+            width: 1.125em;
+            height: 1.125em;
+            box-shadow: .25em .25em #5901d8;
+            right: .9em;
+            top: .125em;
+        }
+
+        label::before {
+            width: .625em;
+            height: .625em;
+            background-color: #ffc409;
+            outline: .25em dotted #ffc409;
+            outline-offset: .125em;
+            left: .7em;
+            top: .7em;
+        }
+
+        span {
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            background-color: currentColor;
+            border-radius: 2em;
+            top: .25em;
+            left: .25em;
+            overflow: hidden;
+            position: relative;
+            text-indent: -9999px;
+            transition: left .25s;
+            z-index: 2;
+        }
+
+        input:checked~ label span {
+            left: 2em;
+        }
+
+        body:has(input:checked) {
+            background-position: 100% 100%;
+            color: #d0d0d0;
+        }
+        .custom-checkbox {
+            visibility: hidden;
+        }
+
+        .nav-social-button {
+            font: 1.2em sans-serif;
+            position: fixed;
+            bottom: 85px;   
+            right: 20px;  
+            margin-bottom: 10px;  
+        }
+
+        ul {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            list-style-type: none;
+            transform: skewY(-15deg);
+        }
+
+        li {
+            display: block;
+            position: relative;
+            background: #322F2E;
+            transition: 0.5s;
+        }
+
+        li:after {
+            content: "";
+            position: absolute;
+            top: -2em;
+            right: 1.01em;
+            width: 100%;
+            height: 2em;
+            background: inherit;
+            filter: brightness(0.8);
+            transform: skewX(45deg);
+        }
+
+        li:before {
+            font-family: "FontAwesome";
+            font-weight: 600;
+            color: #d5ead7;
+            content: attr(data-icon);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: -1em;
+            left: -2em;
+            width: 2em;
+            height: 100%;
+            background: inherit;
+            filter: brightness(0.6);
+            transform: skewY(45deg);
+        }
+
+        li:nth-child(1) {
+            z-index: 4;
+        }
+
+        li:nth-child(2) {
+            z-index: 3;
+        }
+
+        li:nth-child(3) {
+            z-index: 2;
+        }
+
+        li:nth-child(4) {
+            z-index: 1;
+        }
+
+        li:last-child:after {
+            box-shadow: -5em 5em 2em #322F2E;
+        }
+
+        a {
+            display: block;
+            padding: 0.5em;
+            color: #d5ead7;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        li:hover {
+            background: var(--clr);
+            transform: translateX(-20%);
+        }
+
+        .container {
+            text-align: center;  
+            margin-top: 50px; 
+            margin-right: 20px; 
+        }
+
+        .slide {
+            display: flex;  
+            justify-content: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.45); 
+            color: white; 
+            padding: 10px; 
+            font-family: Arial, sans-serif;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        body {
+            background-image: url(assets/background.png);
+            margin: 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            transition: background-image 4s, color 4s;
+            background-position: 100% 100%;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        .nav-button-donwload {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .nav-button-donwload:hover {
+            background: #ababab;
+            color: #000;
+        }
+
+        .nav-button {
+            background-color: rgba(255, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px 0; 
+            cursor: pointer;
+            filter: grayscale(0);
+            transition: background-color 0.3s, color 0.3s, filter 0.3s;
+            border: 1px solid transparent;
+            border-radius: 8px; 
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 0, 0, 1);
+            filter: grayscale(0);
+            border-color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>- Çпільнота укрãїніʓації ɱайнкрафт Плăгінів -</h1>
+        <h2>- Влāćні плåгіни -</h2>
+        <a href="MAIN-СУМП.html" class="nav-button">⨭ Пꙩвéрнутиčя</a>
+    </header>
+
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="slide">
+            <div class="item" style="background-image: url(https://pibig.info/uploads/posts/2022-08/thumbs/1659379630_42-pibig-info-p-fon-mainkraft-s-sheiderami-krasivo-42.jpg);">
+                <div class="content">
+                    <div class="name">✨ SimpleBlocks ✨ 1.04</div>
+                    <div class="des">Найкращий плагін для зручності будівництва для серверів Minecraft</div>
+                    <button onclick="window.location.href='https://www.spigotmc.org/resources/%E2%9C%A8-simpleblocks-%E2%9C%A8.114912/download?version=529131'" class="nav-button-donwload">₪ Завантажити</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://pm1.aminoapps.com/6873/21af10831987c3e45ed8d67735ef753449d7f855r1-1080-697v2_uhq.jpg);">
+                <div class="content">
+                    <div class="name">✨ SimpleBlocks ✨ 1.04</div>
+                    <div class="des">Найкращий плагін для зручності будівництва для серверів Minecraft</div>
+                    <button onclick="window.location.href='https://www.spigotmc.org/resources/%E2%9C%A8-simpleblocks-%E2%9C%A8.114912/download?version=529131'" class="nav-button-donwload">₪ Завантажити</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://sotni.ru/wp-content/uploads/2023/08/minecraft-sheidery-1.17-1.webp);">
+                <div class="content">
+                    <div class="name">✨ SimpleBlocks ✨ 1.04</div>
+                    <div class="des">Найкращий плагін для зручності будівництва для серверів Minecraft</div>
+                    <button onclick="window.location.href='https://www.spigotmc.org/resources/%E2%9C%A8-simpleblocks-%E2%9C%A8.114912/download?version=529131'" class="nav-button-donwload">₪ Завантажити</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://ru-minecraft.ru/uploads/posts/2021-11/1636915269_sora-shaders.jpg);">
+                <div class="content">
+                    <div class="name">✨ SimpleBlocks ✨ 1.04</div>
+                    <div class="des">Найкращий плагін для зручності будівництва для серверів Minecraft</div>
+                    <button onclick="window.location.href='https://www.spigotmc.org/resources/%E2%9C%A8-simpleblocks-%E2%9C%A8.114912/download?version=529131'" class="nav-button-donwload">₪ Завантажити</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(https://pm1.aminoapps.com/6873/21af10831987c3e45ed8d67735ef753449d7f855r1-1080-697v2_uhq.jpg);">
+                <div class="content">
+                    <div class="name">✨ SimpleBlocks ✨ 1.04</div>
+                    <div class="des">Найкращий плагін для зручності будівництва для серверів Minecraft</div>
+                    <button onclick="window.location.href='https://www.spigotmc.org/resources/%E2%9C%A8-simpleblocks-%E2%9C%A8.114912/download?version=529131'" class="nav-button-donwload">₪ Завантажити</button>
+                </div>
+            </div>
+        </div>
+        <div class="button">
+            <button class="prev"><i class="fa-solid fa-arrow-left"></i>⨭</button>
+            <button class="next"><i class="fa-solid fa-arrow-right"></i>⨮</button>
+        </div>
+    </div>
+
+    <div class="nav-social-button">
+        <ul>
+            <li style="--clr: #ff0050;" data-icon="&#xe07b"><a href="#">TikTok</a></li>
+            <li style="--clr: #4267b2;" data-icon="&#xf39e"><a href="#">Facebook</a></li>
+            <li style="--clr: #1da1f2;" data-icon="&#xe61b"><a href="#">Twitter</a></li>
+            <li style="--clr: #c13584;" data-icon="&#xf16d"><a href="#">Instagram</a></li>
+        </ul>
+    </div>
+    
+    <input type="checkbox" id="toggle" class="custom-checkbox" checked>
+    <label for="toggle">
+        <span>dark-mode</span>
+    </label>
+
+    <div class="footer">
+        <p>- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</p>
+        <p>- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</p>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('toggle');
+
+    toggle.addEventListener('change', function () {
+        if (toggle.checked) {
+            document.body.style.backgroundImage = 'url("assets/background.png")';
+            document.body.style.color = '#d0d0d0';
+            document.querySelector('h1').style.color = '#FFFFFF';
+            document.querySelector('.gallery-header').style.color = '#FFFFFF';
+            document.querySelector('.no-results').style.color = 'rgba(255, 255, 255, 0.77)';
+        } else {
+            document.body.style.backgroundImage = 'url("assets/background2.png")';
+            document.body.style.color = '#1D1B1E';
+            document.querySelector('h1').style.color = 'rgba(0, 0, 0, 0.77)';
+            document.querySelector('.gallery-header').style.color = 'rgba(0, 0, 0, 0.77)';
+            document.querySelector('.no-results').style.color = 'rgba(0, 0, 0, 0.77)';
+        }
+    });
+});
+    const $next = document.querySelector('.next');
+    const $prev = document.querySelector('.prev');
+
+    $next.addEventListener(
+        'click',
+        () => {
+            const items = document.querySelectorAll('.item');
+            document.querySelector('.slide').appendChild(items[0]);
+        },
+    );
+
+    $prev.addEventListener(
+        'click',
+        () => {
+            const items = document.querySelectorAll('.item');
+            document.querySelector('.slide').
+            prepend(items[items.length - 1]);
+        },
+    );
+
+    function showLoadingOverlay() {
+        var overlay = document.getElementById("overlay");
+        overlay.style.display = "flex"; 
+    }
+
+ 
+    function hideLoadingOverlay() {
+        var overlay = document.getElementById("overlay");
+        overlay.style.display = "none"; 
+    }
+
+    function openModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    showLoadingOverlay();
+
+    setTimeout(function() {
+        hideLoadingOverlay();
+    }, 90);
+</script>
