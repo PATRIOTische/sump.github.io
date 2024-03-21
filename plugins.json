@@ -1,0 +1,22 @@
+[
+    {
+      "plugin": {
+        "name": "Назва плагіну",
+        "description": "Опис плагіну",
+        "logoLink": "https://example.com/logo.png",
+        "nickname": "Ваш нікнейм",
+        "fileLink": "https://example.com/plugin.jar",
+        "contactInfo": "your.email@example.com"
+      }
+    },
+    {
+      "plugin": {
+        "name": "Інша назва плагіну",
+        "description": "Інший опис плагіну",
+        "logoLink": "https://example.com/another-logo.png",
+        "nickname": "Інший нікнейм",
+        "fileLink": "https://example.com/another-plugin.jar",
+        "contactInfo": "another.email@example.com"
+      }
+    }
+  ]
