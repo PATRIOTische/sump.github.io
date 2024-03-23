@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - Головна</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-brands/css/uicons-brands.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <style>
+        #searchInput {
+            padding: 8px;
+            margin: 0 5px;
+            background-color: #201A1A; 
+            color: white; 
+            border: 1px solid white; 
+        }
+        #answerInput {
+            padding: 8px;
+            margin: 0 5px;
+            background-color: #201A1A; 
+            color: white; 
+            border: 1px solid white; 
+        } 
+        .overlay {
+            position: fixed!important;
+            top: 0!important;
+            left: 0!important;
+            width: 100%!important;
+            height: 100%!important;
+            background-color: #1d1b1e!important;
+            display: flex;
+            justify-content: center!important;
+            align-items: center!important;
+            z-index: 9999!important;
+            opacity: 1!important;
+            animation: fadeOut 2s linear forwards!important;
+        }
+
+        .spinner-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            border: 9px solid #7e292a;
+            animation: spinner-bulqg1 0.8s infinite linear alternate,
+            spinner-oaa3wk 1.6s infinite linear;
+        }
+
+        .overlay:before {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -0.25em;
+        }
+
+        .spinner:before {
+            display: block;
+            height: 100%;
+            margin-top: -0.5em;
+        }
+  
+        @keyframes spinner-bulqg1 {
+            0% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+            }
+ 
+            12.5% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+            }
+ 
+            25% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+            }
+ 
+            50% {
+                clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            62.5% {
+                clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            75% {
+                clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+            }
+ 
+            100% {
+                clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+            }
+        }
+ 
+        @keyframes spinner-oaa3wk {
+            0% {
+                transform: scaleY(1) rotate(0deg);
+            }
+ 
+            49.99% {
+                transform: scaleY(1) rotate(135deg);
+            }
+ 
+            50% {
+                transform: scaleY(-1) rotate(0deg);
+            }
+ 
+            100% {
+                transform: scaleY(-1) rotate(-135deg);
+            }
+        }
+        #addTranslationButton {
+            background-color: rgba(46, 139, 87, 0.8); 
+            color: white; 
+            font-size: 18px; 
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px; 
+        }
+        #addTranslationButton:hover {
+            background-color: rgba(46, 139, 87, 1); 
+        }
+        #searchButton {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            font-size: 18px; 
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;  
+        }
+        #searchButton:hover {
+            background-color: rgba(255, 0, 0, 1); 
+        }
+        body {
+            background-image: url(assets/background.png);
+            margin: 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            transition: background-image 4s, color 4s;
+            background-position: 100% 100%;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .translations {
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+        }
+        .translations img {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .plugins {
+            justify-content: space-around;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .plugin {
+            width: calc(33.33% - 20px); 
+            background-color:#202020;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            position: relative;
+            text-align: center;
+            width: 30%;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+            min-width: 200px;
+            max-width: 300px;
+            border: 3px solid #232323; 
+        }
+
+        @media (max-width: 992px) {
+            .plugin {
+                width: calc(50% - 20px);  
+            } 
+        }
+
+        @media (max-width: 600px) {
+            .plugin {
+                width: 100%; /* 100% ширини для 1 плагіну на ряд на дуже вузьких екранах */
+            }
+        } 
+
+        .plugin img {
+            width: 60%; 
+            height: auto;
+            border-radius: 15px 15px 0 0;
+            margin-top: 10px;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #ffb3b0 #534342;
+        }
+  
+        *::-webkit-scrollbar {
+            height: 10px;
+            width: 8px;
+        }
+        *::-webkit-scrollbar-track, *::-webkit-scrollbar-track:hover, *::-webkit-scrollbar-track:active {
+            background-color: #534342;
+        }
+  
+        *::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #ffb3b0;
+        }
+  
+        *::-webkit-scrollbar-thumb:hover {
+            background-color: #ffb3b0;
+        }
+  
+        *::-webkit-scrollbar-thumb:active {
+            background-color: #ffb3b0;
+        }
+  
+
+        @media (max-width: 768px) {
+
+            * {
+                scrollbar-width: thin;
+                scrollbar-color: #ffb3b0 #534342;
+            }
+
+            *::-webkit-scrollbar {
+                height: 0px;
+                width: 0px;
+            }
+
+            *::-webkit-scrollbar-thumb {
+                border-radius: 0px;
+                background-color: #ffb3b0;
+            }
+        }
+
+        .plugin p {
+            color: white;
+        }
+
+        .button-arrow-footer {
+            text-align: center;
+            background-color: #00000000;
+            color: white;
+            font-size: 12px;
+        }
+
+        .footer-text {
+            color: white;
+        }
+
+        .nav-social-button-mobile {
+            background-color: #322f2e18; 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, filter 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-social-button-mobile:hover {   
+            background-color: #322F2E; 
+            border-color: rgb(255, 255, 255);
+        }
+
+        .nav-footer {
+            margin-bottom: 10px;
+            text-align: center;
+            display: inline-block;
+        }
+
+
+        @media (max-width: 767px) {
+            .plugin {
+                width: calc(100% - 40px);
+            }
+
+            .plugin img {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 1048px) {
+
+            label[for="toggle"] {
+                position: relative;
+                bottom: 5px;  
+                left: auto;
+                top: auto;
+                margin: auto; 
+                margin-top: 5px;
+            }
+            .nav-social-button {
+                display: none;
+            }
+            .footer-text {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 1049px) {
+            .nav-footer {
+                display: none;
+            }
+            .button-arrow-footer {
+                display: none;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.45); 
+            color: white; 
+            padding: 10px; 
+            font-family: Arial, sans-serif;
+            z-index: 999;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            border-radius: 10px; 
+        }
+    
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px; 
+            color: #000000;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content textarea {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .modal-content input[type="radio"] {
+            border-color: #4D98EF;
+        }
+
+        .nav-button {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            filter: grayscale(0); 
+            transition: background-color 0.3s, color 0.3s, filter 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-button:hover {   
+            background-color: rgba(255, 0, 0, 1); 
+            filter: grayscale(0);  
+            border-color: rgb(255, 255, 255);
+        }
+        .nav-button.dimmed {         
+            filter: grayscale(1);  
+        }
+        .pluginDownload {
+            margin-top: 20px;
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            filter: grayscale(0); 
+            transition: background-color 0.3s, color 0.3s, filter 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .pluginDownload:hover {   
+            background-color: rgba(255, 0, 0, 1); 
+            filter: grayscale(0);  
+            border-color: rgb(255, 255, 255);
+        }
+
+        .pluginAuthor {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.735);
+        }
+
+        .pluginVersion {
+            color: #fff; 
+        }
+
+        .pluginName {
+            color: #fff; 
+        }
+
+        .pluginBuild {
+            margin-top: 20px;
+            color: #ff9d09;
+            font-size: 17px;
+        }
+
+        .pluginDescription {
+            background-color: #332828;
+            margin-top: 10px;
+            border-radius: 10px; 
+            padding: 10px;
+            color: #fff;
+            height: 100px;
+            overflow-y: auto;
+        }
+ 
+        .no-results {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.77);
+            font-weight: bold;
+        }
+        .translations-count {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: white; 
+            font-size: 14px; 
+            padding: 8px 16px;
+            margin-top: 20px;
+            border-radius: 5px; 
+            display: inline-block; 
+        }
+
+        #aboutUsModal .modal-content {
+            background-color: #201A1A; 
+            color: white; 
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #aboutUsModal header {
+            background-color: #7e292a; 
+            color: white; 
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        #AuthorizationMenu .modal-content {
+            background-color: #201A1A; 
+            color: white; 
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #AuthorizationMenu header {
+            background-color: #7e292a; 
+            color: white; 
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 10px;
+        }     
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            width: 100%;
+            height: 50vh; 
+            flex-direction: column;
+        }
+        
+        .gallery-header {
+            font-size: 18px;  
+            margin-bottom: 10px;  
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: row;
+            width: 60%;
+            height: 300px;
+            position: relative; 
+        }
+
+        .item {
+            flex: 1;
+            height: 100%;
+        }
+        .item {
+            background-position: center;
+            background-size: cover;
+            transition: flex 0.8s ease;
+        }
+        .item:hover {
+            flex: 3;
+        }
+
+        .dark-mode-label {
+            display: block;
+            height: 2em;
+            width: 3.75em;
+            font-size: 2rem;
+            border: .125em solid currentColor;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            position: relative;
+            position: fixed; 
+            top: 10px;  
+            right: 10px;
+            border-radius: 1em;
+            z-index: 99;
+        }
+
+        .dark-mode-label::before,
+        .dark-mode-label::after {
+            content: '';
+            display: block;
+            border-radius: 1em;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .dark-mode-label::after {
+            width: 1.125em;
+            height: 1.125em;
+            box-shadow: .25em .25em #5901d8;
+            right: .9em;
+            top: .125em;
+        }
+
+        .dark-mode-label::before {
+            width: .625em;
+            height: .625em;
+            background-color: #ffc409;
+            outline: .25em dotted #ffc409;
+            outline-offset: .125em;
+            left: .7em;
+            top: .7em;
+        }
+
+        .dark-mode-span {
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            background-color: currentColor;
+            border-radius: 2em;
+            top: .25em;
+            left: .25em;
+            overflow: hidden;
+            position: relative;
+            text-indent: -9999px;
+            transition: left .25s;
+            z-index: 2;
+        }
+
+        input:checked~ label span {
+            left: 2em;
+        }
+
+        body:has(input:checked) {
+            background-position: 100% 100%;
+            color: #d0d0d0;
+        }
+        .custom-checkbox {
+            visibility: hidden;
+        }
+
+        .nav-social-button {
+            font: 1.2em sans-serif;
+            position: fixed;
+            bottom: 85px;   
+            right: 20px;  
+            margin-bottom: 10px;  
+        }
+
+        ul {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            list-style-type: none;
+            transform: skewY(-15deg);
+        }
+
+        li {
+            display: block;
+            position: relative;
+            background: #322F2E;
+            transition: 0.5s;
+        }
+
+        li:after {
+            content: "";
+            position: absolute;
+            top: -2em;
+            right: 1.01em;
+            width: 100%;
+            height: 2em;
+            background: inherit;
+            filter: brightness(0.8);
+            transform: skewX(45deg);
+        }
+
+        li:before {
+            font-family: "FontAwesome";
+            font-weight: 600;
+            color: #d5ead7;
+            content: attr(data-icon);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: -1em;
+            left: -2em;
+            width: 2em;
+            height: 100%;
+            background: inherit;
+            filter: brightness(0.6);
+            transform: skewY(45deg);
+        }
+
+        li:nth-child(1) {
+            z-index: 4;
+        }
+
+        li:nth-child(2) {
+            z-index: 3;
+        }
+
+        li:nth-child(3) {
+            z-index: 2;
+        }
+
+        li:nth-child(4) {
+            z-index: 1;
+        }
+
+        li:last-child:after {
+            box-shadow: -5em 5em 2em #322F2E;
+        }
+
+        a {
+            display: block;
+            padding: 0.5em;
+            color: #d5ead7;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        li:hover {
+            background: var(--clr);
+            transform: translateX(-20%);
+        }
+
+        #translationCountContainer { 
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #translationCount {
+            background-color: rgba(255, 0, 0, 0.6); 
+            color: #ffffff; 
+            padding: 10px 20px;
+            margin-top: 10px; 
+            position: center;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1048px) {
+
+            label[for="toggle"] {
+                position: relative;
+                bottom: 5px;  
+                left: auto;
+                top: auto;
+                margin: auto; 
+                margin-top: 5px;
+            }
+            .nav-social-button {
+                display: none;
+            }
+        }
+        .toast-item {
+            position: relative;
+            position: fixed;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 7;
+            display: none;
+        }
+        .toast {
+            background-color: white;
+            color: #f5f5f5;
+            border: 0.15rem solid #fff2;
+            padding: 1.2rem;
+            text-align: center;
+            border-radius: 1rem;
+            font-weight: 300;
+            text-align: left;
+            max-width: 16rem;
+            box-shadow: 0 0 1.5rem 0 #1a1f4360;
+            position: relative;
+            --bg: #03a65a;
+        }
+
+        .toast:before {
+            content: "";
+            position: absolute;
+            background: var(--bg);
+            width: 0.5rem;
+            height: calc(100% - 1.5rem);
+            top: 0.75rem;
+            left: 0.5rem;
+            border-radius: 1rem;
+        }
+
+        .h3-error {
+            color: var(--bg);
+            font-size: 1.2rem;
+            margin: 0 0 0 0.5rem;
+            line-height: 1.35rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .p-error {
+            color: #595959;
+            font-size: 0.95rem;
+            margin: 0 0 0 0.5rem;
+            line-height: 1.3rem;
+        }
+
+        .close-s {
+            position: absolute;
+            width: 1.35rem;
+            height: 1.35rem;
+            text-align: center;
+            right: 1rem;
+            cursor: pointer;
+            border-radius: 100%;
+            z-index: 2;
+        }
+
+        .close-s:after {
+            content: "+";
+            position: absolute;
+            color: #595959;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            font-size: 1.8rem;
+            transform: rotate(-45deg);
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-indent: 1px;
+        }
+
+        .toast.error {
+            --bg: #db3056;
+        }
+
+        .close-s:hover:after {
+            background: var(--bg);
+            color: #fff;
+        }
+
+        .scroll-padding {
+            height: 100px;
+            position: relative;
+        }
+
+        .scroll-padding-s {
+            height: 70px;
+            position: relative;
+        }
+        .discord-nav {
+            margin-top: 10px;
+        }
+        .discord-button {
+            background-color: #7289da; 
+            color: white; 
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            filter: grayscale(0); 
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>- Çпільнота укрãїніʓації ɱайнкрафт Плăгінів -</h1>
+        <div style="text-align: center;">
+            <button id="addTranslationButton" onclick="openModal()"><i class="fa-solid fa-plus"></i></button>
+            <input type="text" id="searchInput" placeholder="Bвéдіть ʓăпит для пōшукɣ">
+            <button id="searchButton" onclick="searchPlugins()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </header>
+
+    <input type="checkbox" id="toggle" class="custom-checkbox" checked>
+        <label for="toggle" class="dark-mode-label">
+            <span class="dark-mode-span">dark-mode</span>
+        </label>
+
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal')">&times;</span>
+        <h2>Додавання перекладу</h2>
+        <p style="color: black; font-size: 18px;"><i style="color: red;" class="fa-solid fa-triangle-exclamation"></i> У розробці!</p>
+        
+        <label for="pluginName">Наʒвâ плагіну</label>
+        <input type="text" id="pluginName" placeholder="Введіть назву плагіну">
+
+        <label for="pluginDescription">Опис плâгіну</label>
+        <textarea id="pluginDescription" placeholder="Введіть опис плагіну"></textarea>
+
+        <label for="yourNickname">Ваɯ ніķ(и)</label>
+        <input type="text" id="yourNickname" placeholder="Введіть ваш нік">
+
+        <label for="pluginAVersion">Вèрćія плâгіну</label>
+        <input type="text" id="pluginAVersion" placeholder="Введіть версію вашого плагіну">
+
+        <label for="developmentProgress">Ступінь завершення розробки (%)</label>
+        <input type="text" id="developmentProgress" placeholder="Введіть відсоток завершення розробки">
+
+        <label for="officialYes">Чи є цей переклад офіційним?</label>
+        <label for="officialYes">
+            <input type="radio" id="officialYes" name="official" value="Так">
+            Так
+        </label>
+        
+        <label for="officialNo">
+            <input type="radio" id="officialNo" name="official" value="Ні">
+            Ні
+        </label>
+
+        <label for="pluginLogoLink">Поćилання на logo плâгінɥ</label>
+        <input type="text" id="pluginLogoLink" placeholder="Введіть посилання на logo плагіну">
+
+        <label for="pluginFileLink">Поçилання на фâйл плагінɥ (.jar)</label>
+        <input type="text" id="pluginFileLink" placeholder="Введіть посилання на файл плагіну">
+
+        <label for="contactInfo">Е-ɱейл\Телəграм</label>
+        <input type="text" id="contactInfo" placeholder="Введіть ваш контактний е-мейл або Telegram">
+
+        <label for="responsibility" class="responsibility-label">*при завантаженні плагіну на сайт ви берете на себе відповідальність за його вміст</label>
+        <div class="discord-nav">
+            <button class="nav-button" type="submit" onclick="return validateForm() && publishTranslation()"><i class="fa-solid fa-file-arrow-up"></i> Опублікувати</button> <button class="discord-button" onclick="window.location.href='https://discord.gg/GrE54yJj'"><i class="fa-brands fa-discord"></i></button>
+        </div>
+    </div>
+    <div class="scroll-padding"></div>
+</div>
+
+    <nav>
+        <button id="allTranslationsButton" class="nav-button" onclick="resetSettingsAndShowAll()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-border-all"></i> Всі пèреклąди</button>
+        <a class="nav-button" href="PLUGINS-СУМП.html" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-window-restore"></i> Влāćні плåгіни</a>
+        <button class="nav-button" onclick="showDevelopmentPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-code"></i> В рŏʒробці</button>
+        <button class="nav-button" onclick="showOfficialPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-check"></i> Őфіційні</button>
+        <button class="nav-button" onclick="showContributorPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-users"></i> Від ɣчаçниĸіʙ</button>
+        <a class="nav-button" onclick="toggleToastItem()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-newspaper"></i> Hõвини</a>
+        <a class="nav-button" href="FAQ-СУМП.html" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-circle-question"></i> Прó нäč</a>
+    </nav>
+
+    <div id="translationCountContainer">
+        <div id="translationCount"><i class="fa-solid fa-file-circle-plus"></i> Всього перекладів: 0</div>
+    </div>
+
+    <div class="plugins" id="pluginsContainer">
+        <div class="no-results" id="noResultsMessage" style="display: none;">Нічогò не ʒнãйдено</div>
+        <div class="plugin" data-type="official">
+            <div class="pluginLogo">
+                <img src="https://www.spigotmc.org/data/resource_icons/114/114912.jpg?1707041356">
+            </div>
+            <h2 class="pluginName">SimpleBlocks</h2>
+            <div class="pluginVersion">Версія: 1.04</div>
+            <div class="pluginDescription">SimpleBlocks - найкращий плагін для зручності будівництва для серверів Minecraft.</div>
+            <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+            <div class="pluginDownload">
+                <a href="https://www.spigotmc.org/resources/%E2%9C%A8-simpleblocks-%E2%9C%A8.114912/download?version=529131" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+            </div>
+        </div>
+        <div class="plugin" data-type="notOfficial">
+            <div class="pluginLogo">
+                <img src="https://i.ibb.co/bNnymwp/8631.png">
+            </div>
+            <h2 class="pluginName">CoreProtect</h2>
+            <div class="pluginVersion">Версія: 22.2</div>
+            <div class="pluginDescription">CoreProtect — це швидкий, ефективний інструмент для реєстрації даних і захисту від трагедії.</div>
+            <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+            <div class="pluginDownload">
+                <a href="https://www.dropbox.com/scl/fi/lswh8ul9u56ze27sq0ogb/CoreProtect-22.2-UA.zip?rlkey=3cmsse08agdrmmc1yoeiiixiu&dl=0" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+            </div>
+        </div>
+        <div class="plugin" data-type="notOfficial">
+            <div class="pluginLogo">
+                <img src="https://i.ibb.co/L6dpTtt/8632.png">
+            </div>
+            <h2 class="pluginName">Brewery</h2>
+            <div class="pluginVersion">Версія: 3.1.1</div>
+            <div class="pluginDescription">Brewery - навчіться мистецтву пивоваріння шляхом бродіння, дистиляції та витримки в бочках на вашому сервері Minecraft.</div>
+            <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+            <div class="pluginDownload">
+                <a href="https://www.dropbox.com/scl/fi/n9vrb7imo1tjpdzfys0if/Brewery-3.1.1-UA.zip?rlkey=9tqsjw2sucajp7y74dnsxt3xa&dl=0" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+            </div>
+        </div>
+        <div class="plugin" data-type="official">
+            <div class="pluginLogo">
+                <img src="https://user-images.githubusercontent.com/879756/65964696-19d6b300-e423-11e9-9cb0-d193225ee40f.png">
+            </div>
+            <h2 class="pluginName">Towny Advanced</h2>
+            <div class="pluginVersion">Версія: 0.100.1.0</div>
+            <div class="pluginDescription">Towny Advanced - плагін для створення міст на серверах з можливістю костомізації.</div>
+            <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Офіційний</div>
+            <div class="pluginDownload">
+                <a href="https://github.com/TownyAdvanced/Towny/releases/download/0.100.1.0/Towny.Advanced.0.100.1.0.zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-item error" onclick="hideToastItem()">
+        <div class="toast error">
+            <label class="close-s"></label>
+            <div class="h3-error" >Error!</div>
+            <div class="p-error">Сайт знаходиться на технічних роботах.</div>
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-header" style="color:rgb(255, 255, 255); font-size: 24px;" >- Гąлерèя -</div>
+        <div class="gallery">
+            <div class="gallery-border"></div>
+            <div class="item" style="background-image: url(https://i0.wp.com/minecraftshader.com/wp-content/uploads/2023/09/noble-shaders-for-minecraft-5.jpg?fit=1280%2C678&ssl=1);"></div>
+            <div class="item" style="background-image: url(https://preview.redd.it/0g5pg6g2grd61.png?width=1920&format=png&auto=webp&s=d2bacaee1bb4ba0561e0c8743d629a5f66415bea);"></div>
+            <div class="item" style="background-image: url(https://cdn.modrinth.com/data/HVnmMxH1/images/26327bef581206670288bf7e1b1b5f411291f793.jpeg);"></div>
+            <div class="item" style="background-image: url(https://staticg.sportskeeda.com/editor/2023/05/4ece4-16837471893790-1920.jpg);"></div>
+            <div class="item" style="background-image: url(https://staticg.sportskeeda.com/editor/2022/01/452b9-16418477870742-1920.jpg);"></div>
+        </div>
+    </div>
+    <div class="scroll-padding-s"></div>
+
+    <div class="nav-social-button">
+        <ul>
+            <li style="--clr: #ff0050;" data-icon="&#xe07b"><a href="#">TikTok</a></li>
+            <li style="--clr: #d22e2e;" data-icon="&#xf167;"><a href="#">YouTube</a></li>
+            <li style="--clr: #1da1f2;" data-icon="&#xf099;"><a href="#">Twitter</a></li>
+            <li style="--clr: #5865F2;" data-icon="&#xf392;"><a href="#">Discord</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <div class="nav-footer" style="display: none;">
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-tiktok"></i> TikTok</button>
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-youtube"></i> YouTube</button>
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-twitter"></i> Twitter</button>
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-discord"></i> Discord</button>
+        </div>
+        <div class="footer-text">- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</div>
+        <div class="footer-text">- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</div>
+        <p style="display: none;">- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</p>
+        <p style="display: none;">- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</p>
+        <button class="button-arrow-footer" ><i class="fa-solid fa-angle-up"></i></button>
+        <button style="display: none;" class="button-arrow-footer" ><i class="fa-solid fa-angle-down"></i></button>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) { 
+    event.preventDefault();
+    searchPlugins(); 
+  }
+});
+function validateForm() {
+    const pluginName = document.getElementById('pluginName').value;
+    const pluginDescription = document.getElementById('pluginDescription').value;
+    const pluginLogoLink = document.getElementById('pluginLogoLink').value;
+    const yourNickname = document.getElementById('yourNickname').value;
+    const pluginFileLink = document.getElementById('pluginFileLink').value;
+    const contactInfo = document.getElementById('contactInfo').value;
+    const pluginAVersion = document.getElementById('pluginAVersion').value;
+
+    const developmentProgress = document.getElementById('developmentProgress').value;
+
+    const regex = /^[1-9][0-9]{0,2}$/;  
+
+    if (!regex.test(developmentProgress)) {
+        alert('⛔ Поле "developmentProgress" повинно містити число від 1 до 999.');
+        return false;
+    }
+
+    if (pluginName.length < 3 || pluginAVersion.length < 2 || pluginDescription.length < 16 || yourNickname.length < 3 || contactInfo.length < 5) {
+        alert('⛔ Будь ласка, забезпечте всі необхідні дані.');
+        return false;
+    }
+
+    if (!pluginLogoLink.startsWith('https://') && !pluginLogoLink.startsWith('http://')) {
+        alert('⛔ Посилання на logo має починатися на http:// або https://.');
+        return false;
+    }
+
+    if (!pluginFileLink.startsWith('https://') && !pluginFileLink.startsWith('http://')) {
+        alert('⛔ Посилання на файл плагіну має починатися на http:// або https://.');
+        return false;
+    }
+
+    if (pluginLogoLink.length < 8 || pluginFileLink.length < 8) {
+        alert('⛔ Посилання на файл повинно містити повну адресу.');
+        return false;
+    }
+
+    return true;
+}
+async function publishTranslation() {
+    const pluginName = document.getElementById('pluginName').value;
+    const pluginDescription = document.getElementById('pluginDescription').value;
+    const pluginLogoLink = document.getElementById('pluginLogoLink').value;
+    const yourNickname = document.getElementById('yourNickname').value;
+    const pluginFileLink = document.getElementById('pluginFileLink').value;
+    const developmentProgress = document.getElementById('developmentProgress').value;
+    const pluginAVersion = document.getElementById('pluginAVersion').value;
+    const officialYes = document.getElementById('officialYes').checked;
+    const officialNo = document.getElementById('officialNo').checked;
+    const contactInfo = document.getElementById('contactInfo').value;
+
+    const webhookUrl = 'https://discord.com/api/webhooks/1220836114483511326/RPHqrRdnCZeE4DfB23yiBgPac0xUGF7SGVefmed7QQNxC0o7EG0bYlv2DVK6j4vvQqlJ';
+
+    const data = {
+        content: '📨 Нова заявка на додавання перекладу опублікована!',
+        embeds: [
+            {
+                title: 'Додавання перекладу',
+                description: `:jigsaw: **Назва плагіну:** ${pluginName}\n` +
+                    `:notepad_spiral: **Опис плагіну:** ${pluginDescription}\n` +
+                    `:man_guard: **Автор:** ${yourNickname}\n` +
+                    `:game_die: **Версія плагіну:** ${pluginAVersion}\n` +
+                    `:warning: **Ступінь завершення розробки:** ${developmentProgress}%\n` +
+                    `:grey_question: **Офіційний переклад:** ${officialYes ? 'Так' : 'Ні'}\n` +
+                    `:link: **Посилання на logo плагіну:** ${pluginLogoLink}\n` +
+                    `:file_folder: **Посилання на файл плагіну:** ${pluginFileLink}\n` +
+                    `:identification_card: **Контактна інформація:** ${contactInfo}`,
+                color: 10816268,
+                footer: {
+                    text: 'Çпільнота укрãїніʓації ɱайнкрафт Плăгінів',
+                    icon_url: 'https://i.ibb.co/zFzBFYy/favicon.png'
+                }
+            }
+        ]
+    };
+
+    const response = await fetch(webhookUrl, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (response.ok) {
+        closeModal('myModal');
+        alert('✔ Ваша заявка на переклад була успішно надіслана. Очікуйте її розгляду.');
+    } else {
+        alert('⚠ Вибачте, виникла помилка під час надсилання заявки. Прохання спробувати ще раз пізніше.');
+    }
+}
+function hideToastItem() {
+    const toastItem = document.querySelector('.toast-item.error');
+    toastItem.style.display = 'none';
+    isToastItemDisplayed = false;  
+}
+
+let isToastItemDisplayed = false;
+
+function toggleToastItem() {
+    const toastItem = document.querySelector('.toast-item');
+    if (!isToastItemDisplayed) {
+        toastItem.style.display = 'block';
+        isToastItemDisplayed = true;
+        
+        setTimeout(hideToastItem, 8000);
+    }
+}
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const scrollUpButton = document.querySelector(".button-arrow-footer:first-of-type");
+    const nav = document.querySelector(".nav-footer"); 
+    const paragraphs = document.querySelectorAll(".footer p");
+    const scrollDownButton = document.querySelector(".button-arrow-footer:last-of-type");
+
+    function centerButtons() {
+        const buttons = document.querySelectorAll(".button-arrow-footer");
+        buttons.forEach(button => {
+            button.style.textAlign = "center";
+            button.style.margin = "0 auto";
+        });
+    }
+
+    centerButtons();
+
+    function checkWindowSize() {
+        return window.innerWidth <= 1048;
+    }
+
+    if (checkWindowSize()) {
+        scrollUpButton.style.display = "block";
+        nav.style.display = "none";
+        paragraphs.forEach(paragraph => {
+            paragraph.style.display = "none";
+        });
+    }
+
+    scrollUpButton.addEventListener("click", function() {
+        this.style.display = "none";
+        scrollDownButton.style.display = "block";
+        nav.style.display = "block";
+        paragraphs.forEach(paragraph => {
+            paragraph.style.display = "block";
+        });
+        centerButtons();
+    });
+
+    scrollDownButton.addEventListener("click", function() {
+        this.style.display = "none";
+        nav.style.display = "none";
+        paragraphs.forEach(paragraph => {
+            paragraph.style.display = "none";
+        });
+        scrollUpButton.style.display = "block";
+        centerButtons();
+    });
+
+    window.addEventListener("resize", function() {
+        if (checkWindowSize()) {
+            scrollUpButton.style.display = "block";
+            scrollDownButton.style.display = "none";
+            nav.style.display = "none";
+            paragraphs.forEach(paragraph => {
+                paragraph.style.display = "none";
+            });
+            centerButtons();
+        } else {
+            scrollUpButton.style.display = "none";
+            scrollDownButton.style.display = "none";
+            nav.style.display = "none";
+            paragraphs.forEach(paragraph => {
+                paragraph.style.display = "none";
+            });
+        }
+    });
+});
+            document.body.style.overflowY = 'auto';
+            document.addEventListener('DOMContentLoaded', function () {
+                updateTranslationCount();
+            const toggle = document.getElementById('toggle');
+
+                toggle.addEventListener('change', function () {
+                    if (toggle.checked) {
+                        document.body.style.backgroundImage = 'url("assets/background.png")';
+                        document.body.style.color = '#d0d0d0';
+                        document.querySelector('h1').style.color = '#FFFFFF';
+                        document.querySelector('.gallery-header').style.color = '#FFFFFF';
+                        document.querySelector('.no-results').style.color = 'rgba(255, 255, 255, 0.77)';
+                    } else {
+                        document.body.style.backgroundImage = 'url("assets/background2.png")';
+                        document.body.style.color = '#1D1B1E';
+                        document.querySelector('h1').style.color = 'rgba(0, 0, 0, 0.77)';
+                        document.querySelector('.gallery-header').style.color = 'rgba(0, 0, 0, 0.77)';
+                        document.querySelector('.no-results').style.color = 'rgba(0, 0, 0, 0.77)';
+                    }
+                });
+            });
+
+            function hoverButton(button) {
+                var buttons = document.getElementsByClassName('nav-button');
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i] !== button) {
+                        buttons[i].classList.add('dimmed');
+                    }
+                }            
+            }
+
+            function resetButtons() {
+                var buttons = document.getElementsByClassName('nav-button');
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.remove('dimmed');
+                }
+            }
+
+            function updateTranslationCount() {
+    var translationCountElement = document.getElementById("translationCount");
+    var pluginCount = document.querySelectorAll("#pluginsContainer .plugin").length;
+
+    var iconElement = document.createElement("i");
+    iconElement.className = "fa-solid fa-file-circle-plus";
+
+    translationCountElement.innerHTML = "";
+
+    translationCountElement.appendChild(iconElement);
+    translationCountElement.innerHTML += " Всього перекладів: " + pluginCount;
+}
+
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = "none";
+            }
+
+            function searchPlugins() {
+    var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    var pluginsContainer = document.getElementById("pluginsContainer");
+    var plugins = pluginsContainer.getElementsByClassName("plugin");
+    var noResultsMessage = document.getElementById("noResultsMessage");
+
+    var foundResults = false;
+
+    for (var i = 0; i < plugins.length; i++) {
+        var pluginName = plugins[i].getElementsByClassName("pluginName")[0].innerText.toLowerCase();
+
+        if (pluginName.includes(searchTerm)) {
+            plugins[i].style.display = "block";
+            foundResults = true;
+        } else {
+            plugins[i].style.display = "none";
+        }
+    }
+
+    if (foundResults) {
+        noResultsMessage.style.display = "none";
+    } else {
+        noResultsMessage.style.display = "block";
+    }
+}
+
+document.getElementById("searchButton").addEventListener("click", searchPlugins);
+
+function resetSettingsAndShowAll() {
+    var pluginsContainer = document.getElementById("pluginsContainer");
+    var plugins = pluginsContainer.getElementsByClassName("plugin");
+    var noResultsMessage = document.getElementById("noResultsMessage");
+
+    for (var i = 0; i < plugins.length; i++) {
+        plugins[i].style.display = "block";
+    }
+
+    noResultsMessage.style.display = "none";
+}
+
+            function showLoadingOverlay() {
+                var overlay = document.getElementById("overlay");
+                overlay.style.display = "flex"; 
+            }
+
+            function hideLoadingOverlay() {
+                var overlay = document.getElementById("overlay");
+                overlay.style.display = "none"; 
+            }
+
+            var modal = document.getElementById("myModal");
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Escape" || event.key === "Esc") {
+                closeModal('myModal');
+                }
+            });
+
+            function openModal() {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+            }
+
+            showLoadingOverlay();
+
+            setTimeout(function() {
+                hideLoadingOverlay();
+            }, 90);  
+
+            function showOfficialPlugins() {
+    filterPlugins("official");
+}
+
+function showContributorPlugins() {
+    filterPlugins("notOfficial");
+}
+
+function filterPlugins(type) {
+    var pluginsContainer = document.getElementById("pluginsContainer");
+    var plugins = pluginsContainer.getElementsByClassName("plugin");
+    var noResultsMessage = document.getElementById("noResultsMessage");
+
+    var foundResults = false;
+
+    for (var i = 0; i < plugins.length; i++) {
+        var pluginType = plugins[i].getAttribute("data-type");
+
+        if (pluginType === type) {
+            plugins[i].style.display = "block";
+            foundResults = true;
+        } else {
+            plugins[i].style.display = "none";
+        }
+    }
+
+    if (!foundResults) {
+        noResultsMessage.style.display = "block";
+    } else {
+        noResultsMessage.style.display = "none";
+    }
+}
+function showDevelopmentPlugins() {
+    filterPlugins("development");
+}
+
+function filterPlugins(type) {
+    var pluginsContainer = document.getElementById("pluginsContainer");
+    var plugins = pluginsContainer.getElementsByClassName("plugin");
+    var noResultsMessage = document.getElementById("noResultsMessage");
+
+    var foundResults = false;
+
+    for (var i = 0; i < plugins.length; i++) {
+        var pluginType = plugins[i].getAttribute("data-type");
+
+        if (type === "development" && plugins[i].querySelector(".pluginBuild")) {
+            plugins[i].style.display = "block";
+            foundResults = true;
+        } else if (pluginType === type) {
+            plugins[i].style.display = "block";
+            foundResults = true;
+        } else {
+            plugins[i].style.display = "none";
+        }
+    }
+
+    if (!foundResults) {
+        noResultsMessage.style.display = "block";
+    } else {
+        noResultsMessage.style.display = "none";
+    }
+}
+    </script>
+</body>
+</html>
