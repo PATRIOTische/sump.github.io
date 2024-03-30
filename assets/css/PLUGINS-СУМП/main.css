@@ -1,0 +1,33 @@
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.45); 
+    color: white; 
+    padding: 10px; 
+    font-family: Arial, sans-serif;
+}
+.footer p {
+    margin: 5px 0;
+}
+header h1 {
+    color: white;
+}
+.footer-text {
+    color: white;
+}
+.nav-footer {
+    margin-bottom: 10px;
+    text-align: center;
+    display: inline-block;
+}
+.scroll-padding {
+    height: 100px;
+    position: relative;
+}
