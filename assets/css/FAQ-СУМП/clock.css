@@ -1,0 +1,56 @@
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Deutsch Gothic', sans-serif;
+    gap: 10px;
+    transition: color 4s;
+    margin: 20px auto;
+}
+
+section {
+    width: 120px;
+    height: 120px;
+    display: flex;
+}
+
+.tens, .ones {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.tens p, .ones p {
+    position: absolute;
+    font-size: 6rem;
+    z-index: 1;
+}
+
+.separator {
+    font-size: 4rem;
+}
+
+.clock {
+    color: #32323259;
+}
+
+.separator,
+p.active {
+    color: #FFE548;
+    text-shadow: 0px 0px 20px #F58732;
+    z-index: 2;
+}
+
+.tens p.active,
+.ones p.active {
+    z-index: 2;
+}
+
+.clock * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
