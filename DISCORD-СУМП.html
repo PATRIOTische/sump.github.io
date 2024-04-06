@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - discord</title>
+    <link rel='stylesheet' href="assets/css/ALL-СУМП/maintenanceText.css">
+    <link rel='stylesheet' href="assets/css/DISCORD-СУМП/footer.css">
+    <link rel='stylesheet' href="assets/css/DISCORD-СУМП/main.css">
+    <style>
+        /* @body #06.04.24# */
+        body {
+            background-color: #1d1b1e;
+            background-image: url("");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            background-position: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <a title="СУМП не несе відповідальності за будь-які технічні проблеми, що можуть виникнути на сайті під час його використання." class="versionTEST" id="maintenanceMessage" style="display: none;">
+        <i class="fa-solid fa-link"></i>
+        <span class="text">MAINTAINCE</span>
+        <span class="status">ON</span>
+    </a>
+    <p class="discord-logo"><i class="fa-brands fa-discord"></i></p>
+    <p class="discord-logo-blurry"><i class="fa-brands fa-discord"></i></p>
+
+    <div class="footer">
+        <div class="discord">Проблеми зі з'єднанням? Повідом нам про це!</div>
+        <div class="nav-container">
+            <button class="discord-button" onclick="window.location.href='DISCORD-СУМП.html'" ><i class="fa-brands fa-discord"></i> Discord</button>
+            <button class="discord-button" onclick="window.location.href='index.html';"><i class="fa-solid fa-delete-left"></i> Назад</button>              
+        </div>
+        <div class="scroll-padding"></div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+    <script src="assets/js/index.js"></script>
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://discord.com/invite/tQXzycVVJG";
+        }, 150);
+        window.addEventListener('popstate', function(event) {
+            if (history.state && history.state.fromDiscord) {
+                window.location.href = "index.html";
+            }
+        });
+        const backgroundImages = [
+            'assets/svg/--bg--theme-dark1.svg',
+            'assets/svg/--bg--theme-dark2.svg',
+            'assets/svg/--bg--theme-dark3.svg',
+            'assets/svg/--bg--theme-dark4.svg'
+        ];
+
+        const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+        document.body.style.backgroundImage = `url(${backgroundImages[randomIndex]})`;
+    </script>
+</body>
