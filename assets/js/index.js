@@ -1,4 +1,4 @@
-var isMaintenanceActive = true;
+var isMaintenanceActive = false;
 var redirectDelay = 1000;
 
 document.addEventListener("DOMContentLoaded", function () {
