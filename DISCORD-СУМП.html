@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - discord</title>
+    <link rel='stylesheet' href="assets/css/ALL-СУМП/maintenanceText.css">
+    <style>
+        /* @body #06.04.24# */
+        body {
+            background-color: #1d1b1e;
+            background-image: url("");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            background-position: 100% 100%;
+        }
+        .container {
+        position: relative;
+        text-align: center;
+        }
+
+        .discord-logo {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 172px;
+        }
+
+        .discord-logo-blurry {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(255, 255, 255, 0.5); 
+        font-size: 172px;
+        filter: blur(10px); 
+        }
+        .discord-url {
+        position: absolute;
+        top: calc(40% + 150px); 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+    <a title="СУМП не несе відповідальності за будь-які технічні проблеми, що можуть виникнути на сайті під час його використання." class="versionTEST" id="maintenanceMessage" style="display: none;">
+        <i class="fa-solid fa-link"></i>
+        <span class="text">MAINTAINCE</span>
+        <span class="status">ON</span>
+    </a>
+    <p class="discord-logo"><i class="fa-brands fa-discord"></i></p>
+    <p class="discord-logo-blurry"><i class="fa-brands fa-discord"></i></p>
+
+    <script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+    <script src="assets/js/index.js"></script>
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://discord.com/invite/tQXzycVVJG";
+        }, 150);
+        const backgroundImages = [
+            'assets/svg/--bg--theme-dark1.svg',
+            'assets/svg/--bg--theme-dark2.svg',
+            'assets/svg/--bg--theme-dark3.svg',
+            'assets/svg/--bg--theme-dark4.svg'
+        ];
+
+        const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+        document.body.style.backgroundImage = `url(${backgroundImages[randomIndex]})`;
+    </script>
+</body>
