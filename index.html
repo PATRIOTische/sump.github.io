@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - ℨáßaнтаження...</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/overlay.css">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/header.css">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/main.css">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/modal.status.css">
+</head>
+<body>
+    <header>
+        <div class="header-bar"></div>
+        <div class="sump">SUMP</div>
+        <a class="header-rotate" onclick="reloadButton()"><i class="fa-solid fa-arrows-rotate"></i></a>
+    </header>
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <div class="text"></div>
+            <div class="text">Завантаження...</div>
+            <div class="text"></div>
+            <div class="text" id="maintenanceText"><i class="fa-solid fa-gears"></i> Профілактичні роботи в процесі. Будь ласка, зачекайте...</div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="discord">Проблеми зі з'єднанням? Повідом нам про це!</div>
+        <div class="nav-container">
+            <button class="discord-button" onclick="window.location.href='DISCORD-СУМП.html'" ><i class="fa-brands fa-discord"></i> Discord</button>
+            <button class="discord-button" onclick="openModal()"><i class="fa-solid fa-rotate"></i> Статус сервера</button>              
+        </div>
+        <div class="scroll-padding"></div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="status-title">
+            <span>STATUS:</span>
+            <div class="status-text">
+              <span class="text-item">auth (<span class="green-text">ok</span>)</span>
+              <span class="text-item">discord (<span class="green-text">ok</span>)</span>
+              <span class="text-item">main (<span class="orange-text">warning</span>)</span>
+              <span class="text-item">plugin (<span class="red-text">error</span>)</span>
+              <span class="text-item">faq (<span class="red-text">error</span>)</span>
+              <span class="text-item">news (<span class="gray-text">?</span>)</span>
+            </div>
+        </div>
+        <div class="scroll-padding"></div>
+        <div class="status-item">
+            <div class="circle green"></div>
+            <i style="z-index: 999;" class="fa-solid fa-user"></i>
+        </div>
+            <i class="fa-solid fa-angle-right"></i>
+            <div class="status-item">
+                <div class="circle orange"></div>
+                <i style="z-index: 999;" class="fa-solid fa-house"></i>
+            </div>
+            <i class="fa-solid fa-angle-right"></i>
+            <div class="status-item">
+                    <div class="circle red"></div>
+                    <i style="z-index: 999;" class="fa-solid fa-puzzle-piece"></i>
+            </div>
+            <i class="fa-solid fa-angle-right"></i>
+            <div class="status-item">
+                <div class="circle red"></div>
+                <i style="z-index: 999;" class="fa-solid fa-clipboard-question"></i>
+            </div>
+            <i class="fa-solid fa-angle-right"></i>
+            <div class="status-item">
+                <div class="circle gray"></div>
+                <i style="z-index: 999;" class="fa-solid fa-newspaper"></i>
+            </div>
+            <div class="new-section">
+                <div class="arrow-down">
+                <i class="fa-solid fa-chevron-down"></i>
+                <div class="down"></div>
+                </div>
+                <div class="status-item">
+                <div class="circle green"></div>
+                <i style="z-index: 999;" class="fa-brands fa-discord"></i>
+                </div>
+            </div>
+        <div class="scroll-padding"></div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+<script src="assets/js/index.js"></script>
+</html>
