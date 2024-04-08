@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="msvalidate.01" content="15505E4F68088F5A324A7C71EF661A7F" />
+    <meta name="google-site-verification" content="qggRZdWV97BX58wyp4stLoLL2d2SogccsRlNHH4xuU8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП (Сільнота Українізації Майнкрафт Плагінів)</title>
+    <meta name="keywords" content="СУМП, sumptranslate.pp.ua, sumptranslate.netlify.app, Спільнота Українізації Майнкрафт Плагінів, Майнкрафт, Плагіни, Plugins, Minecraft, SUMP, Ukraine, Kyiv, Ukrainianization, Українізація, Ігри, Games">
+    <meta name="description" content="Спільнота Українізації Майнкрафт Плагінів (СУМП) є ініціативою, спрямованою на популяризацію українського контенту у сфері плагінів для гри Minecraft. Наша спільнота пропонує широкий вибір плагінів, які були переведені на українську мову нашим товариством або офіційно, а також ті, що були розроблені членами нашої спільноти або іншими розробниками. Ми прагнемо забезпечити якісний та різноманітний контент для української аудиторії гравців Minecraft.">
+
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/overlay.css">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/header.css">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/main.css">
+    <link rel="stylesheet" href="assets/css/INDEX-СУМП/modal.status.css">
+
+    <meta property="og:title" content="Спільнота Українізації Майнкрафт Плагінів">
+    <meta property="og:description" content="Спільнота Українізації Майнкрафт Плагінів (СУМП) є ініціативою, спрямованою на популяризацію українського контенту у сфері плагінів для гри Minecraft. Наша спільнота пропонує широкий вибір плагінів, які були переведені на українську мову нашим товариством або офіційно, а також ті, що були розроблені членами нашої спільноти або іншими розробниками. Ми прагнемо забезпечити якісний та різноманітний контент для української аудиторії гравців Minecraft.">
+    <meta property="og:image" content="https://i.ibb.co/2yNGxns/favicon.png">
+    <meta property="og:url" content="https://sumptranslate.netlify.app/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Спільнота Українізації Майнкрафт Плагінів">
+    <meta property="og:locale" content="Kyiv">
+<body>
+    <header>
+        <div class="header-bar"></div>
+        <div class="sump">SUMP</div>
+        <a class="header-rotate" onclick="reloadButton()"><i class="fa-solid fa-arrows-rotate"></i></a>
+    </header>
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <div class="text"></div>
+            <div class="text">Завантаження...</div>
+            <div class="text"></div>
+            <div class="text" id="maintenanceText"><i class="fa-solid fa-gears"></i> Профілактичні роботи в процесі. Будь ласка, зачекайте...</div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="discord-lo">Проблеми зі з'єднанням? Повідом нам про це!</div>
+        <div class="nav-container">
+            <button class="discord-button" onclick="window.location.href='DISCORD-СУМП.html'" ><i class="fa-brands fa-discord"></i> Discord</button>
+            <button class="discord-button" onclick="openModal()"><i class="fa-solid fa-rotate"></i> Статус сервера</button>              
+        </div>
+        <div class="scroll-padding"></div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div class="status-title">
+            <span>STATUS:</span>
+            <div class="status-text">
+              <span class="text-item auth" data-color="green">auth (<span class="green-text">ok</span>)</span>
+              <span class="text-item discord" data-color="green">discord (<span class="green-text">ok</span>)</span>
+              <span class="text-item main" data-color="green">main (<span class="green-text">ok</span>)</span>
+              <span class="text-item plugin" data-color="green">plugin (<span class="green-text">ok</span>)</span>
+              <span class="text-item faq" data-color="green">faq (<span class="green-text">ok</span>)</span>
+              <span class="text-item news" data-color="gray">news (<span class="gray-text">?</span>)</span>
+            </div>
+          </div>
+          <div class="scroll-padding"></div>
+          <div class="status-item auth">
+            <div class="circle green"></div>
+            <i style="z-index: 999;" class="fa-solid fa-user"></i>
+          </div>
+          <i class="fa-solid fa-angle-right"></i>
+          <div class="status-item main">
+            <div class="circle green"></div>
+            <i style="z-index: 999;" class="fa-solid fa-house"></i>
+          </div>
+          <i class="fa-solid fa-angle-right"></i>
+          <div class="status-item plugin">
+            <div class="circle green"></div>
+            <i style="z-index: 999;" class="fa-solid fa-puzzle-piece"></i>
+          </div>
+          <i class="fa-solid fa-angle-right"></i>
+          <div class="status-item faq">
+            <div class="circle green"></div>
+            <i style="z-index: 999;" class="fa-solid fa-clipboard-question"></i>
+          </div>
+          <i class="fa-solid fa-angle-right"></i>
+          <div class="status-item news">
+            <div class="circle gray"></div>
+            <i style="z-index: 999;" class="fa-solid fa-newspaper"></i>
+          </div>
+          <div class="new-section">
+            <div class="arrow-down">
+              <i class="fa-solid fa-chevron-down"></i>
+              <div class="down"></div>
+            </div>
+            <div class="status-item discord">
+              <div class="circle green"></div>
+              <i style="z-index: 999;" class="fa-brands fa-discord"></i>
+            </div>
+          </div>
+          <div class="scroll-padding"></div>
+        </div>
+      </div>
+</body>
+<script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+<script src="assets/js/index.js"></script>
+</html>
