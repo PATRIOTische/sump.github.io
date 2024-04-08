@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СУМП - Влāćні плåгіни</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel='stylesheet' href="assets/css/PLUGINS-СУМП/container.slide.css">
+    <link rel='stylesheet' href="assets/css/PLUGINS-СУМП/container.slide-mobile.css">
+    <link rel='stylesheet' href="assets/css/PLUGINS-СУМП/day.night.css">
+    <link rel='stylesheet' href="assets/css/PLUGINS-СУМП/style.band.css">
+    <link rel='stylesheet' href="assets/css/PLUGINS-СУМП/input.buttons.css">
+    <link rel='stylesheet' href="assets/css/PLUGINS-СУМП/main.css">
+    <link rel='stylesheet' href="assets/css/ALL-СУМП/maintenanceText.css">
+    <style>
+        /* @body #12.01.24# */
+        body {
+            background-color: #1d1b1e;
+            background-image: url("");
+            margin: 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            transition: background-image 4s, color 4s;
+            background-position: 100% 100%;
+        }
+
+        /* @media #06.03.24# */
+        @media (max-width: 1048px) {
+            label[for="toggle"] {
+                position: relative;
+                bottom: 5px;
+                left: auto;
+                top: auto;
+                margin: auto;
+                margin-top: 5px;
+            }
+            .nav-social-button {
+                display: none;
+            }
+            .footer-text {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 1048px) {
+            .container {
+                display: none;
+            }
+        }
+
+        @media (min-width: 849px) and (max-width: 1048px) {
+            .container-mobile {
+                display: flex; 
+            }
+        }
+
+        @media (min-width: 1049px) {
+            .container-mobile {
+                display: none;
+            }
+        }
+
+        @media (max-height: 850px) {
+            .container {
+                display: none;
+            }
+            .container-mobile {
+                display: flex;
+            }
+        }
+
+        @media screen and (min-width: 1048px) {
+            .nav-footer {
+                display: none;
+            }
+            .button-arrow-footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="DISCORD-СУМП.html" title="СУМП не несе відповідальності за будь-які технічні проблеми, що можуть виникнути на сайті під час його використання." class="versionTEST" id="maintenanceMessage" style="display: none;">
+        <i class="fa-solid fa-link"></i>
+        <span class="text">MAINTAINCE</span>
+        <span class="status">ON</span>
+    </a>
+    <header>
+        <h1>- Çпільнота укрãїніʓації ɱайнкрафт Плăгінів -</h1>
+        <h2>- Влāćні плåгіни -</h2>
+        <a href="MAIN-СУМП.html" class="nav-button"><i class="fa-solid fa-arrow-left"></i> Пꙩвéрнутиčя</a>
+    </header>
+
+    <div id="overlay" class="overlay">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <input type="checkbox" id="toggle" class="custom-checkbox" checked>
+            <label for="toggle" class="dark-mode-label">
+                <span class="dark-mode-span">dark-mode</span>
+            </label>
+
+    <div class="nav-social-button">
+        <ul>
+            <li style="--clr: #ff0050;" data-icon="&#xe07b"><a href="#">TikTok</a></li>
+            <li style="--clr: #d22e2e;" data-icon="&#xf167;"><a href="#">YouTube</a></li>
+            <li style="--clr: #1da1f2;" data-icon="&#xf099;"><a href="#">Twitter</a></li>
+            <li style="--clr: #5865F2;" data-icon="&#xf392;"><a href="DISCORD-СУМП.html">Discord</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <div class="nav-footer" style="display: none;">
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-tiktok"></i> TikTok</button>
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-youtube"></i> YouTube</button>
+            <button class="nav-social-button-mobile" ><i class="fa-brands fa-twitter"></i> Twitter</button>
+            <button class="nav-social-button-mobile" onclick="window.location.href='DISCORD-СУМП.html'" ><i class="fa-brands fa-discord"></i> Discord</button>
+        </div>
+        <div class="footer-text">- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</div>
+        <div class="footer-text">- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</div>
+        <p style="display: none;">- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</p>
+        <p style="display: none;">- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</p>
+        <button class="button-arrow-footer" ><i class="fa-solid fa-angle-up"></i></button>
+        <button style="display: none;" class="button-arrow-footer" ><i class="fa-solid fa-angle-down"></i></button>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/plugin.js"></script>
