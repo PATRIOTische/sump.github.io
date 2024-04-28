@@ -27,3 +27,8 @@
     color: white;
     font-size: 36px;
 }
+.scroll-padding {
+    height: 600px;
+    position: relative;
+    z-index: -1;
+}
