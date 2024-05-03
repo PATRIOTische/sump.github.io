@@ -1,0 +1,186 @@
+.text-container {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 25px auto;
+}
+
+.primary-text {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10;
+}
+
+.secondary-text {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+}
+
+.custom-block {
+    background: #131315;
+    border-radius: 15px;
+    border: 2px solid #26262A;
+    padding: 20px;
+    color: #fff; 
+    float: right; 
+    width: 45%;
+    margin-right: 20px; 
+}
+
+.custom-block:hover {
+    background: #18181B;
+    border: none;
+}
+.container-block {
+    display: flex;
+    margin-top: 5px;
+}
+
+.block-text-bold {
+    color: #ABABAD;
+    margin-right: 5px;
+    font-weight: bold;
+    font-weight: 700;
+    font-size: 21px;
+    cursor: pointer;
+}
+.block-text {
+    color: #F7EDF0;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.block-text:hover {
+    color: #845EC2;
+    text-decoration: underline;
+}
+.block-destext {
+    color: #AAAAA5;
+    margin-left: 21.5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.container-typ {
+    display: inline-flex;
+}
+@media (max-width: 1048px) {
+    label[for="toggle"] {
+        position: relative;
+        bottom: 5px;  
+        left: auto;
+        top: auto;
+        margin: auto; 
+        margin-top: 5px;
+    }
+}
+
+.rules-block {
+    background: none;
+    padding: 20px;
+    color: #fff; 
+    float: left; 
+    width: 45%;
+    margin-left: 20px; 
+}
+
+.rules-blockTikTok {
+    background: none;
+    padding: 20px;
+    color: #fff; 
+    float:none; 
+    width: 45%;
+    margin-left: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.rules-title {
+    display: relative;
+    color: #F7EDF0;
+    font-weight: bold;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.rules-text {
+    display: relative;
+    color: #F7EDF0;
+    font-size: 18px;
+    text-align: center;
+}
+li {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: lighter;
+    font-weight: 400;
+}
+
+.imgback {
+    filter: blur(130px); 
+    height: 450px; 
+    z-index: -1; 
+    width: 100% !important; 
+    position: absolute !important; 
+    opacity: 0.5; pointer-events: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+.imgbackTikTok {
+    filter: blur(140px) grayscale(100%) brightness(110%) sepia(100%) hue-rotate(320deg); 
+    height: 450px; 
+    z-index: -1; 
+    width: 100% !important; 
+    position: absolute !important; 
+    opacity: 0.5; pointer-events: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+.imgbackYoutube {
+    filter: hue-rotate(100deg) grayscale(50%) blur(130px);
+    height: 450px; 
+    z-index: -1; 
+    width: 100% !important; 
+    position: absolute !important; 
+    opacity: 0.45; pointer-events: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.45); 
+    color: white; 
+    padding: 10px; 
+    font-family: Arial, sans-serif;
+}
+.footer p {
+    margin: 5px 0;
+}
+header h1 {
+    color: white;
+}
+.footer-text {
+    color: white;
+}
