@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+body canvas {
+  box-shadow: 0.2em 0.2em 2em #0008;
+  border: none;
+  outline: none;
+}
+.nav-button {
+  background-color: rgba(255, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px 0; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, filter 0.3s;
+  border: 1px solid transparent;
+  border-radius: 8px; 
+  top: 20px; 
+  right: 20px;
+  position: fixed;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 0, 0, 1);
+  border-color: rgb(255, 255, 255);
+}
+#canvas {
+  -webkit-touch-callout: none;  
+  -webkit-user-select: none;  
+  -khtml-user-select: none;  
+  -moz-user-select: none;  
+  -ms-user-select: none;  
+  user-select: none;  
+}
