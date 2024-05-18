@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/404-СУМП/main.css">
     <link rel="stylesheet" href="assets/css/404-СУМП/overlay.css">
     <link rel='stylesheet' href="assets/css/ALL-СУМП/maintenanceText.css">
+    <link rel='stylesheet' href="assets/css/ALL-СУМП/toast.css">
 
     <meta name="keywords" content="СУМП, sumptranslate.pp.ua, sumptranslate.netlify.app, Спільнота Українізації Майнкрафт Плагінів, Майнкрафт, Плагіни, Plugins, Minecraft, SUMP, Ukraine, Kyiv, Ukrainianization, Українізація, Ігри, Games">
     <meta name="description" content="СУМП — це спільнота, яка популяризує український контент у плагінах для гри Minecraft. Ми перекладаємо та розробляємо плагіни, щоб надати українським гравцям якісний вибір.">
@@ -86,10 +87,18 @@
             <p style="color: #fff;">Ми не змогли знайти сторінку, яку ви шукали. Можливо, вона була переміщена, або її просто не існує.</p>
             <a class="btn-link" href="main.html"><i class="fa-solid fa-arrow-left"></i> Повернутися</a>
         </div>
+        <div class="toast-item error" onclick="hideToastItem()">
+            <div class="toast error">
+                <label class="close-s"></label>
+                <div class="h3-error" >Error!</div>
+                <div class="p-error">Сайт знаходиться на технічних роботах.</div>
+            </div>
+        </div>
     </main>
     <script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
     <script src="assets/js/404.js"></script>
     <script src="assets/js/overlay.js"></script>
     <script src="assets/js/day.js"></script>
+    <script src="assets/js/toast.js"></script>
 </body>
 </html>
