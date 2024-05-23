@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msvalidate.01" content="15505E4F68088F5A324A7C71EF661A7F" />
+    <meta name="google-site-verification" content="qggRZdWV97BX58wyp4stLoLL2d2SogccsRlNHH4xuU8" />
+
+    <title>СУМП - Головна</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-brands/css/uicons-brands.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href="https://vjs.zencdn.net/8.10.0/video-js.css">
+    <link rel='stylesheet' href="https://vjs.zencdn.net/8.10.0/video.min.js">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/overlay.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/input.buttons.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/day.night.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/gallery.css">
+    <link rel='stylesheet' href="assets/css/ALL-СУМП/toast.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/plugins.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/modal.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/style.band.css">
+    <link rel='stylesheet' href="assets/css/MAIN-СУМП/main.css">
+    <link rel='stylesheet' href="assets/css/ALL-СУМП/maintenanceText.css">
+
+    <meta name="keywords" content="СУМП, sumptranslate.pp.ua, sumptranslate.netlify.app, Спільнота Українізації Майнкрафт Плагінів, Майнкрафт, Плагіни, Plugins, Minecraft, SUMP, Ukraine, Kyiv, Ukrainianization, Українізація, Ігри, Games">
+    <meta name="description" content="СУМП — це спільнота, яка популяризує український контент у плагінах для гри Minecraft. Ми перекладаємо та розробляємо плагіни, щоб надати українським гравцям якісний вибір.">
+
+    <meta property="og:title" content="Спільнота Українізації Майнкрафт Плагінів">
+    <meta property="og:description" content="СУМП — це спільнота, яка популяризує український контент у плагінах для гри Minecraft. Ми перекладаємо та розробляємо плагіни, щоб надати українським гравцям якісний вибір.">
+    <meta property="og:image" content="https://i.ibb.co/2yNGxns/favicon.png">
+    <meta property="og:url" content="https://sumptranslate.netlify.app/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Спільнота Українізації Майнкрафт Плагінів">
+    <meta property="og:locale" content="Kyiv">
+    <style>
+        /* @body #23.12.23# */
+        body {
+            background-color: #1d1b1e;
+            background-image: url("");
+            background-size: 100% 100%;
+            background-position: center;
+            margin: 0;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 0; 
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+            transition: background-image 4s, color 4s;
+            background-position: 100% 100%;
+            min-height: 100vh;
+        }
+        
+        /* @media #06.03.24# */
+        @media (max-width: 992px) {
+            .plugin {
+                width: calc(50% - 20px);  
+            } 
+        }
+        @media (max-width: 600px) {
+            .plugin {
+                width: 100%; 
+            }
+        } 
+        @media (max-width: 767px) {
+            .plugin {
+                width: calc(100% - 40px);
+            }
+
+            .plugin img {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+        @media (max-width: 1048px) {
+
+            label[for="toggle"] {
+                position: relative;
+                bottom: 5px;  
+                left: auto;
+                top: auto;
+                margin: auto; 
+                margin-top: 5px;
+            }
+            .nav-social-button {
+                display: none;
+            }
+            .footer-text {
+                display: none;
+            }
+        }
+        @media screen and (min-width: 1049px) {
+            .nav-footer {
+                display: none;
+            }
+            .button-arrow-footer {
+                display: none;
+            }
+        }  
+        @media (max-width: 1048px) {
+
+            label[for="toggle"] {
+                position: relative;
+                bottom: 5px;  
+                left: auto;
+                top: auto;
+                margin: auto; 
+                margin-top: 5px;
+            }
+            .nav-social-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="discord.html" title="СУМП не несе відповідальності за будь-які технічні проблеми, що можуть виникнути на сайті під час його використання." class="versionTEST" id="maintenanceMessage" style="display: none;">
+        <i class="fa-solid fa-link"></i>
+        <span class="text">MAINTAINCE</span>
+        <span class="status">ON</span>
+    </a>
+        <header>
+            <h1>- Çпільнота укрãїніʓації ɱайнкрафт Плăгінів -</h1>
+            <div style="text-align: center;">
+                <button id="addTranslationButton" onclick="openModal()"><i class="fa-solid fa-plus"></i></button>
+                <input type="text" id="searchInput" placeholder="Введіть запит для пошуку">
+                <button id="searchButton" onclick="searchPlugins()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </header>
+
+        <input type="checkbox" id="toggle" class="custom-checkbox" checked disabled>
+            <label for="toggle" class="dark-mode-label">
+                <span class="dark-mode-span">dark-mode</span>
+            </label>
+
+        <div id="overlay" class="overlay">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('myModal')">&times;</span>
+                <h2>Додавання перекладу</h2>
+                
+                <label for="pluginName">Назва плагіну</label>
+                <input type="text" id="pluginName" placeholder="Введіть назву плагіну">
+
+                <label for="pluginDescription">Опис плагіну</label>
+                <textarea id="pluginDescription" placeholder="Введіть опис плагіну"></textarea>
+
+                <label for="yourNickname">Ваш нік(и)</label>
+                <input type="text" id="yourNickname" placeholder="Введіть ваш нік">
+
+                <label for="pluginAVersion">Версія плагіну</label>
+                <input type="text" id="pluginAVersion" placeholder="Введіть версію вашого плагіну">
+
+                <label for="developmentProgress">Ступінь завершення розробки</label>
+                <input type="text" id="developmentProgress" placeholder="Введіть відсоток завершення розробки">
+
+                <label for="officialYes">Чи є цей переклад офіційним?</label>
+                    <label for="officialYes">
+                        <input type="radio" id="officialYes" name="official" value="Так">
+                        Так
+                    </label>
+                    
+                    <label for="officialNo">
+                        <input type="radio" id="officialNo" name="official" value="Ні">
+                        Ні
+                    </label>
+                <label for="pluginLogoLink">⚠ Посилання на logo плагіну</label>
+                <div class="img-content">
+                    <div id="imageContainer">
+                        <img class="img-modal" id="pluginLogo" src="assets/img/other/no_img.png">
+                    </div>
+                    <input type="text-logo" id="pluginLogoLink" placeholder="Введіть посилання на logo плагіну">
+                </div>
+                <div class="upload">
+                    <input type="file" id="pluginLogoFile" accept="image/*" disabled />
+                    <label for="pluginLogoFile"></label>
+                    <button class="x-modal-button" type="button" id="resetPluginLogoFile" disabled >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>                
+
+                <label for="pluginFileLink">⚠ Посилання на файл перекладу плагіну</label>
+                <div class="img-content">
+                    <div id="imageContainer">
+                        <img class="img-modal" src="assets/img/other/file.png">
+                    </div>
+                    <input type="text-logo" id="pluginFileLink" placeholder="Введіть посилання на файл плагіну">
+                </div>
+                <div class="upload">
+                    <input type="file" id="pluginFileFile" accept="*/*" disabled />
+                    <label for="pluginFileFile"></label>
+                    <button class="x-modal-button" type="button" id="resetPluginFileFile" disabled >
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <label for="contactInfo">Е-мейл\Телеграм</label>
+                <input type="text" id="contactInfo" placeholder="Введіть ваш контактний е-мейл або Telegram">
+
+                <p style="color: black;">*при завантаженні плагіну на сайт ви берете на себе відповідальність за його вміст</label>
+                <div class="discord-nav">
+                    <button class="nav-button" type="submit" onclick="return validateForm() && publishTranslation()"><i class="fa-solid fa-file-arrow-up"></i> Опублікувати</button> <button class="discord-button" onclick="window.location.href='discord.html'"><i class="fa-brands fa-discord"></i></button>
+                </div>
+            </div>
+            <div class="scroll-padding"></div>
+        </div>
+
+        <nav>
+            <a class="nav-button" href="plugins.html" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-window-restore"></i> Власні плагіни</a>
+            <a class="nav-button" href="news.html" onclick="toggleToastItem()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-newspaper"></i> Новини</a>
+            <a class="nav-button" href="faq.html" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-circle-question"></i> Про нас</a>
+            <button id="allTranslationsButton" class="nav-button" onclick="resetSettingsAndShowAll()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-border-all"></i> Всі переклади</button>
+            <button class="nav-button" onclick="showDevelopmentPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()" style="background-color: #c79d33;"><i class="fa-solid fa-code"></i> В розробці</button>
+            <button class="nav-button" onclick="showOfficialPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-check"></i> Офіційні</button>
+            <button class="nav-button" onclick="showProjectPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-server"></i> Від проекту</button>
+            <button class="nav-button" onclick="showParticipantsPlugins()" onmouseover="hoverButton(this)" onmouseout="resetButtons()"><i class="fa-solid fa-users"></i> Від учасників</button>
+        </nav>
+
+        <div id="translationCountContainer">
+            <div id="translationCount"><i class="fa-solid fa-file-circle-plus"></i> Всього перекладів: 0</div>
+        </div>
+
+        <div class="plugins" id="pluginsContainer">
+            <div class="no-results" id="noResultsMessage" style="display: none;">Нічого не знайдено</div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0005.jpg">
+                </div>
+                <h2 class="pluginName" title="ExtraFireworks 1.12.19">ExtraFireworks 1.12.19</h2>
+                <div class="pluginVersion">Версія: 1.12.x - 1.20.x</div>
+                <div class="pluginDescription">Ви завжди мріяли, щоб феєрверки у грі були ще красивішими? Або, можливо, вам потрібно більше ефектів для ваших грандіозних шоу? Можливо, ви хотіли, щоб вибухи малювали тексти чи картинки? Тоді ExtraFireworks зробить саме те, що ви бажаєте!</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/ExtraFireworks-1.12.19-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>                          
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0010.jpg">
+                </div>
+                <h2 class="pluginName" title="SimpleBlocks 1.04">SimpleBlocks 1.04</h2>
+                <div class="pluginVersion">Версія: 1.17.x - 1.20.x</div>
+                <div class="pluginDescription">SimpleBlocks - найкращий плагін для зручності будівництва для серверів Minecraft.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/SimpleBlocks-1.04.jar" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0008.jpg">
+                </div>
+                <h2 class="pluginName" title="Throwables 1.0.1">Throwables 1.0.1</h2>
+                <div class="pluginVersion">Версія: 1.14.x - 1.19.x</div>
+                <div class="pluginDescription">Throwables - це плагін, який додає метальні сокири та мечі в Minecraft з високою настроюваністю та унікальними опціями предметів.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/Throwables-1.0.1-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0007.jpg">
+                </div>
+                <h2 class="pluginName" title="AdvancedCrates 4.0.0-B3">AdvancedCrates 4.0.0-B3</h2>
+                <div class="pluginVersion">Версія: 1.8.x - 1.20.x</div>
+                <div class="pluginDescription">Цей плагін спрямований на те, щоб зробити процес відкриття скриньок на голову вище, ніж на будь-якому іншому сервері.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/AdvancedCrates-4.0.0-B3-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0009.jpg">
+                </div>
+                <h2 class="pluginName" title="CoreProtect 22.2">CoreProtect 22.2</h2>
+                <div class="pluginVersion">Версія: 1.14.x - 1.20.x</div>
+                <div class="pluginDescription">CoreProtect — це швидкий, ефективний інструмент для реєстрації даних і захисту від трагедії.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/CoreProtect-22.2-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>
+            </div>
+            <div class="plugin" data-type="official">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0011.jpg">
+                </div>
+                <h2 class="pluginName" title="Towny Advanced 0.100.2.0">Towny Advanced 0.100.2.0</h2>
+                <div class="pluginVersion">Версія: 1.7.x - 1.20.x</div>
+                <div class="pluginDescription">Towny Advanced - плагін для створення міст на серверах з можливістю костомізації.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Офіційний</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/Towny.Advanced.0.100.1.0.zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0001.jpg">
+                </div>
+                <h2 class="pluginName" title="UltraMailBox-1.3.3">UltraMailBox 1.3.3</h2>
+                <div class="pluginVersion">Версія: 1.16.x - 1.20.x</div>
+                <div class="pluginDescription">Нова та різноманітна система поштових скриньок, що дозволяє надсилати та отримувати листи іншим гравцям.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/UltraMailBox-1.3.3-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>                          
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0002.jpg">
+                </div>
+                <h2 class="pluginName" title="LiteFish 3.9.1">LiteFish 3.9.1</h2>
+                <div class="pluginVersion">Версія: 1.16.x - 1.20.x</div>
+                <div class="pluginDescription">Цей плагін дозволяє встановлювати індивідуальний лут для кожного біома. Він також дозволяє урізноманітнити рибалку новою міні-грою.</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/LiteFish-3.9.1-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>                          
+            </div>
+            <div class="plugin" data-type="fromtheproject">
+                <div class="pluginLogo">
+                    <img src="assets/img/plugins/img/0006.jpg">
+                </div>
+                <h2 class="pluginName" title="Lands 7.2.0">Lands 7.2.0</h2>
+                <div class="pluginVersion">Версія: 1.16.x - 1.20.x</div>
+                <div class="pluginDescription">Цей плагін для серверів Minecraft дозволяє вам та вашим гравцям легко заявляти права і захищати свої будівлі. Вони можуть створювати епічні міста та боротися між собою. Плагін запобігає всім формам горя, поєднуючи функціональність у зручному графічному меню. Lands забезпечує ідеальне поєднання переваг заявок на основі блоків та вибору блоків, роблячи процес простим та зрозумілим.</div>
+                <div class="pluginBuild" data-type="development"><i class="fa-solid fa-code"></i> Розробка: 3%</div>
+                <div class="pluginAuthor"><i class="fa-solid fa-user"></i> Автор: Команда СУМП</div>
+                <div class="pluginDownload">
+                    <a href="assets/downloads/Lands-7.2.0-(UA).zip" target="_blank"><i class="fa-solid fa-file-arrow-down"></i> Завантажити</a>
+                </div>                          
+            </div>
+        </div>
+
+        <div class="toast-item error" onclick="hideToastItem()">
+            <div class="toast error">
+                <label class="close-s"></label>
+                <div class="h3-error" >Error!</div>
+                <div class="p-error">Сайт знаходиться на технічних роботах.</div>
+            </div>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-header" style="color:rgb(255, 255, 255); font-size: 24px;" >- Галерея -</div>
+            <div class="gallery">
+                <div class="gallery-border"></div>
+                <div class="item" style="background-image: url(https://i0.wp.com/minecraftshader.com/wp-content/uploads/2023/09/noble-shaders-for-minecraft-5.jpg?fit=1280%2C678&ssl=1);"></div>
+                <div class="item" style="background-image: url(https://preview.redd.it/0g5pg6g2grd61.png?width=1920&format=png&auto=webp&s=d2bacaee1bb4ba0561e0c8743d629a5f66415bea);"></div>
+                <div class="item" style="background-image: url(https://cdn.modrinth.com/data/HVnmMxH1/images/26327bef581206670288bf7e1b1b5f411291f793.jpeg);"></div>
+                <div class="item" style="background-image: url(https://staticg.sportskeeda.com/editor/2023/05/4ece4-16837471893790-1920.jpg);"></div>
+                <div class="item" style="background-image: url(https://staticg.sportskeeda.com/editor/2022/01/452b9-16418477870742-1920.jpg);"></div>
+            </div>
+        </div>
+        <div class="scroll-padding-s"></div>
+
+        <div class="nav-social-button">
+            <ul>
+                <li style="--clr: #ff0050;" data-icon="&#xe07b"><a href="tiktok.html">TikTok</a></li>
+                <li style="--clr: #d22e2e;" data-icon="&#xf167;"><a href="youtube.html">YouTube</a></li>
+                <li style="--clr: #1da1f2;" data-icon="&#xf099;"><a href="twitterX.html">Twitter</a></li>
+                <li style="--clr: #5865F2;" data-icon="&#xf392;"><a href="discord.html">Discord</a></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <div class="nav-footer" style="display: none;">
+                <button class="nav-social-button-mobile" onclick="window.location.href='tiktok.html'"><i class="fa-brands fa-tiktok"></i> TikTok</button>
+                <button class="nav-social-button-mobile" onclick="window.location.href='youtube.html'"><i class="fa-brands fa-youtube"></i> YouTube</button>
+                <button class="nav-social-button-mobile" onclick="window.location.href='twitterX.html'"><i class="fa-brands fa-twitter"></i> Twitter</button>
+                <button class="nav-social-button-mobile" onclick="window.location.href='discord.html'"><i class="fa-brands fa-discord"></i> Discord</button>
+            </div>
+            <div class="footer-text">- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</div>
+            <div class="footer-text">- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</div>
+            <p style="display: none;">- © 2023 - 2024 Ćпільнŏтă укʀąїніʓації мàйнķрäфт Плâгінів -</p>
+            <p style="display: none;">- NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG. -</p>
+            <button class="button-arrow-footer" ><i class="fa-solid fa-angle-up"></i></button>
+            <button style="display: none;" class="button-arrow-footer" ><i class="fa-solid fa-angle-down"></i></button>
+        </div>
+</body>
+<script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/day.js"></script>
+<script src="assets/js/toast.js"></script>
+</body>
+</html>
