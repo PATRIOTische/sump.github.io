@@ -1,136 +1,27 @@
 <!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="msvalidate.01" content="15505E4F68088F5A324A7C71EF661A7F" />
-    <meta name="google-site-verification" content="qggRZdWV97BX58wyp4stLoLL2d2SogccsRlNHH4xuU8" />
+<html>
+    <head>
+        <title>> console</title>
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Windows_Terminal_logo.svg/1280px-Windows_Terminal_logo.svg.png" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>СУМП (Сільнота Українізації Майнкрафт Плагінів)</title>
-    <meta name="keywords" content="СУМП, sumptranslate.pp.ua, sumptranslate.netlify.app, Спільнота Українізації Майнкрафт Плагінів, Майнкрафт, Плагіни, Plugins, Minecraft, SUMP, Ukraine, Kyiv, Ukrainianization, Українізація, Ігри, Games">
-    <meta name="description" content="СУМП — це спільнота, яка популяризує український контент у плагінах для гри Minecraft. Ми перекладаємо та розробляємо плагіни, щоб надати українським гравцям якісний вибір.">
-
-    <link rel="icon" href="assets/img/favicon.png" type="image/png">
-
-    <link rel="stylesheet" href="assets/css/INDEX-СУМП/overlay.css">
-    <link rel="stylesheet" href="assets/css/INDEX-СУМП/header.css">
-    <link rel="stylesheet" href="assets/css/INDEX-СУМП/main.css">
-    <link rel="stylesheet" href="assets/css/INDEX-СУМП/modal.status.css">
-    <link rel="stylesheet" href="assets/css/INDEX-СУМП/style.band.css">
-    <link rel='stylesheet' href="assets/css/ALL-СУМП/toast.css">
-
-    <meta property="og:title" content="Спільнота Українізації Майнкрафт Плагінів">
-    <meta property="og:description" content="СУМП — це спільнота, яка популяризує український контент у плагінах для гри Minecraft. Ми перекладаємо та розробляємо плагіни, щоб надати українським гравцям якісний вибір.">
-    <meta property="og:image" content="https://i.ibb.co/2yNGxns/favicon.png">
-    <meta property="og:url" content="https://sumptranslate.netlify.app/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Спільнота Українізації Майнкрафт Плагінів">
-    <meta property="og:locale" content="Kyiv">
-<body>
-    <header>
-        <div class="header-bar"></div>
-        <div class="sump">SUMP</div>
-        <a class="header-rotate" onclick="reloadButton()"><i class="fa-solid fa-arrows-rotate"></i></a>
-    </header>
-    <div id="overlay" class="overlay">
-        <div class="spinner-container">
-            <div class="spinner"></div>
-            <div class="text"></div>
-            <div class="text">Завантаження...</div>
-            <div class="text"></div>
-            <div class="text" id="maintenanceText"><i class="fa-solid fa-gears"></i> Профілактичні роботи в процесі. Будь ласка, зачекайте...</div>
-        </div>
-    </div>
-    <div class="footer">
-        <div class="discord-lo">Проблеми зі з'єднанням? Повідом нам про це!</div>
-        <div class="nav-container">
-            <button class="discord-button" onclick="window.location.href='discord.html'" ><i class="fa-brands fa-discord"></i> Discord</button>
-            <button class="discord-button" onclick="openModal()"><i class="fa-solid fa-rotate"></i> Статус сервера</button>              
-        </div>
-        <div class="scroll-padding"></div>
+    <div id="Cvet">
+        <h1>Українські Космонавти</h1>
+        <h3>Внесок України у космічну галузь</h3>
+        <p>Це сторінка присвячена видатному українському... 🥁</p>
+        <button id="knopka" onclick="showBio()"><span>Дізнатися більше</span></button>
+        <button id="knopochka" onclick="toggleColors()">1</button> <!--хоч це і на половину робив chatGPT вона все одно погано працює...-->
     </div>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal()">&times;</span>
-          <div class="status-title">
-            <span>STATUS:</span>
-            <div class="status-text">
-              <span id="index.html" class="text-item" data-color="">auth (<span class="">?</span>)</span>
-              <span id="discord.html" class="text-item" data-color="">discord (<span class="">?</span>)</span>
-              <span id="twitterX.html" class="text-item" data-color="">twitterX (<span class="">?</span>)</span>
-              <span id="youtube.html" class="text-item" data-color="">youtube (<span class="">?</span>)</span>
-              <span id="tiktok.html" class="text-item" data-color="">tiktok (<span class="">?</span>)</span>
-              <span id="main.html" class="text-item" data-color="">main (<span class="">?</span>)</span>
-              <span id="plugins.html" class="text-item" data-color="">plugin (<span class="">?</span>)</span>
-              <span id="faq.html" class="text-item" data-color="">faq (<span class="">?</span>)</span>
-              <span id="news.html" class="text-item" data-color="">news (<span class="">?</span>)</span>
-            </div>
-            <span class="maintenance">MAINTENANCE: <span></span></span>
-          </div>
-          <div class="scroll-padding"></div>
-          <div id="index.html" class="status-item">
-            <div class="circle gray"></div>
-            <i style="z-index: 999;" class="fa-solid fa-user"></i>
-          </div>
-          <i class="fa-solid fa-angle-right"></i>
-          <div id="main.html" class="status-item">
-            <div class="circle gray"></div>
-            <i style="z-index: 999;" class="fa-solid fa-house"></i>
-          </div>
-          <i class="fa-solid fa-angle-right"></i>
-          <div id="plugins.html" class="status-item">
-            <div class="circle gray"></div>
-            <i style="z-index: 999;" class="fa-solid fa-puzzle-piece"></i>
-          </div>
-          <i class="fa-solid fa-angle-right"></i>
-          <div id="faq.html" class="status-item">
-            <div class="circle gray"></div>
-            <i style="z-index: 999;" class="fa-solid fa-clipboard-question"></i>
-          </div>
-          <i class="fa-solid fa-angle-right"></i>
-          <div id="news.html" class="status-item">
-            <div class="circle gray"></div>
-            <i style="z-index: 999;" class="fa-solid fa-newspaper"></i>
-          </div>
-          <div class="new-section">
-            <div class="arrow-down">
-              <i class="fa-solid fa-chevron-down"></i>
-              <div class="down"></div>
-            </div>
-            <div id="discord.html" class="status-item">
-              <div class="circle gray"></div>
-              <i style="z-index: 999;" class="fa-brands fa-discord"></i>
-            </div>
-            <div id="twitterX.html" class="status-item">
-              <div class="circle gray"></div>
-              <i style="z-index: 999;" class="fa-brands fa-twitter"></i>
-            </div>
-            <div id="youtube.html" class="status-item">
-              <div class="circle gray"></div>
-              <i style="z-index: 999;" class="fa-brands fa-youtube"></i>
-            </div>
-            <div id="tiktok.html" class="status-item">
-              <div class="circle gray"></div>
-              <i style="z-index: 999;" class="fa-brands fa-tiktok"></i>
-            </div>
-          </div>
-          <div class="scroll-padding"></div>
-        </div>
-      </div>
-
-      <div class="toast-item error" onclick="hideToastItem()">
-        <div class="toast error">
-            <label class="close-s"></label>
-            <div class="h3-error" >Error!</div>
-            <div class="p-error">Сайт знаходиться на технічних роботах.</div>
-        </div>
+    <div id="rozpovid">
+        <h2 class="textroZpOVid"><span>Леонід Каденюк</span></h2>
+        <img class="Imag" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-WrMjbIyrMO4ihX9AjlvBeeSAttiENHmD0LWi0Dfh7bYDSh4UhATo71tFnaSUydUxuOM&usqp=CAU" alt="Леонід Каденюк">
+        <p>Леонід Каденюк був першим і єдиним космонавтом незалежної України, який здійснив політ у космос у складі місії NASA на шатлі "Колумбія" у 1997 році. Його політ став важливим символом незалежної України в міжнародному космосі та засвідчив високий рівень української космічної науки.</p>
+        <p>Він провів експерименти з рослинами, досліджуючи їхній ріст і розвиток у невагомості, що є важливим аспектом для довготривалих космічних місій. Його місія допомогла закласти основи для подальших досліджень і сприяла зміцненню співпраці України з іншими космічними державами.</p>
     </div>
-</body>
-<script src="https://kit.fontawesome.com/41a169e9a4.js" crossorigin="anonymous"></script>
-<script src="assets/js/index.js"></script>
-<script src="assets/js/ping.js"></script>
-<script src="assets/js/day.js"></script>
-<script src="assets/js/toast.js"></script>
+
+    <script src="code.js"></script>
+    </body>
 </html>
